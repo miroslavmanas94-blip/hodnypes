@@ -36,12 +36,105 @@
 .auth-actions .btn{flex:1}
 @media(max-width:520px){.auth-nav{padding:8px 10px;font-size:.82rem}.auth-nav .auth-label{display:none}.nav{flex-wrap:wrap}.navlinks{order:3;width:100%;justify-content:space-between;padding-bottom:8px}.navlinks button{flex:1}.auth-dialog{border-radius:23px}}
 
+
+/* Hodny pes dashboard redesign */
+:root{--green:#2f5b43;--green2:#557d5c;--orange:#df8c4d;--cream:#f7f5ed;--paper:#fffefa;--ink:#24342b;--muted:#6c786e;--line:#e2e6dc;--pale:#edf2e9;--shadow:0 16px 42px #243b2b0b;--radius:22px}
+body{background:#f7f7f1}
+.topbar{background:#f7f7f1eF;border-bottom-color:#e4e7df}
+.brand-mark{border-radius:13px;font-size:0;position:relative}
+.brand-mark:before{content:"";position:absolute;width:15px;height:15px;border:2px solid #fff;border-radius:50% 50% 45% 45%;top:11px}
+.brand-mark:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:-7px -3px 0 #fff,7px -3px 0 #fff,0 -8px 0 #fff;top:17px}
+.hero{padding-top:54px;padding-bottom:32px}
+.hero-art{background:linear-gradient(145deg,#e5ecdf,#f2e7d5);min-height:370px}
+.dog-emoji{font-size:clamp(8rem,15vw,12rem)}
+.section{padding-top:43px;padding-bottom:57px}
+.section-head{margin-bottom:22px}
+.panel{box-shadow:0 8px 28px #243b2b08}
+.navlinks button{font-size:.85rem}
+.auth-nav{border-radius:14px}
+.dashboard{padding:24px 0 36px}
+.dashboard-welcome{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:20px}
+.dashboard-welcome h2{font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.1;letter-spacing:-.05em;margin:8px 0}
+.dashboard-welcome p{color:var(--muted);margin:0;max-width:520px}
+.dash-badge{display:inline-flex;align-items:center;gap:7px;background:#e8efe4;color:var(--green);border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:800}
+.dashboard-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px}
+.dash-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px;min-width:0}
+.dash-card h3{font-size:1.05rem;letter-spacing:-.025em;margin:0 0 6px}
+.dash-card p{color:var(--muted);font-size:.9rem;margin-bottom:0}
+.dash-hero{background:linear-gradient(125deg,#2f5b43,#426d4d);color:#fffefa;position:relative;overflow:hidden}
+.dash-hero:after{content:"";position:absolute;right:-38px;top:-72px;width:220px;height:220px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 24px #ffffff08,0 0 0 52px #ffffff06}
+.dash-hero p{color:#dbe7d8;max-width:430px}
+.dash-hero h3{font-size:1.55rem;max-width:440px}
+.dash-hero .btn{margin-top:18px;background:#fffefa;color:var(--green);box-shadow:none}
+.dash-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;position:relative;z-index:1}
+.dash-metric{padding:12px;border:1px solid #ffffff28;background:#ffffff0d;border-radius:15px}
+.dash-metric strong{font-size:1.5rem;display:block;letter-spacing:-.04em}
+.dash-metric span{font-size:.75rem;color:#dbe7d8}
+.dash-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.dash-action{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid var(--line);background:#fffefa;border-radius:15px;padding:13px;min-width:0}
+.dash-action:hover{border-color:#a8bba5;background:#f8faf5}
+.dash-action .action-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#edf2e9;color:var(--green);font-size:1.1rem;flex-shrink:0}
+.dash-action strong{display:block;font-size:.84rem}
+.dash-action small{display:block;color:var(--muted);font-size:.74rem}
+.mission-list{display:grid;gap:11px;margin-top:17px}
+.mission-row{display:flex;align-items:center;gap:12px;border:1px solid var(--line);padding:12px;border-radius:15px}
+.mission-row input{width:18px;height:18px;accent-color:var(--green);flex-shrink:0}
+.mission-row strong{display:block;font-size:.84rem}
+.mission-row small{display:block;color:var(--muted);font-size:.75rem}
+.mission-row.done{background:#f0f5ec}
+.mission-row.done strong{text-decoration:line-through;color:var(--muted)}
+.progress-ring{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--orange) var(--progress,0%),#e8ebdf 0);position:relative;flex-shrink:0}
+.progress-ring:before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--paper)}
+.progress-ring strong{position:relative;font-size:1.1rem}
+.progress-summary{display:flex;align-items:center;gap:16px;margin-top:16px}
+.progress-summary p{margin:0}
+.content-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.feature-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;min-height:210px}
+.feature-icon{width:44px;height:44px;border-radius:14px;background:#edf2e9;display:grid;place-items:center;color:var(--green);margin-bottom:15px;font-size:1.15rem}
+.feature-card h3{font-size:1.02rem;margin:0 0 8px}
+.feature-card p{font-size:.88rem;color:var(--muted);flex:1}
+.feature-card .btn{margin-top:12px;padding:10px 15px;font-size:.85rem}
+.training-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.training-step{border:1px solid var(--line);background:#fffefa;border-radius:18px;padding:19px}
+.training-step .step-num{font-size:.75rem;color:var(--green);font-weight:900;letter-spacing:.12em}
+.training-step h3{font-size:1rem;margin:9px 0}
+.training-step p{font-size:.87rem;color:var(--muted)}
+.collection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.collectible{border:1px solid var(--line);border-radius:18px;background:#fffefa;padding:16px;text-align:center}
+.collectible .collect-icon{height:62px;display:grid;place-items:center;font-size:1.8rem;color:var(--green);background:#edf2e9;border-radius:14px;margin-bottom:12px}
+.collectible strong{font-size:.83rem;display:block}
+.collectible small{color:var(--muted);font-size:.74rem}
+.collectible.locked{filter:saturate(.2);opacity:.65}
+.community-form{display:grid;gap:12px}
+.community-form textarea{width:100%;min-height:94px;border:1px solid var(--line);border-radius:14px;padding:13px;resize:vertical;background:#fffefa}
+.community-feed{display:grid;gap:12px;margin-top:18px}
+.community-post{background:#fffefa;border:1px solid var(--line);border-radius:17px;padding:16px}
+.community-post-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.community-avatar{width:38px;height:38px;border-radius:50%;background:#e8efe4;color:var(--green);display:grid;place-items:center;font-weight:900}
+.community-post-head strong{display:block;font-size:.86rem}
+.community-post-head small{color:var(--muted);font-size:.75rem}
+.community-post p{margin:0;overflow-wrap:anywhere}
+.empty-state{border:1px dashed #cdd8c8;border-radius:16px;padding:20px;text-align:center;color:var(--muted);font-size:.9rem}
+.auth-methods{display:flex;gap:8px;margin:16px 0 13px}
+.auth-method{flex:1;border:1px solid var(--line);border-radius:12px;background:#fffefa;color:var(--muted);padding:10px;font-size:.85rem;font-weight:800}
+.auth-method.active{background:var(--pale);color:var(--green);border-color:#b8cbb3}
+.auth-fields{display:grid;gap:10px;margin-top:12px}
+.auth-fields input{width:100%;border:1px solid var(--line);background:#fffefa;border-radius:12px;padding:12px 13px;color:var(--ink)}
+.auth-email-actions{display:flex;gap:9px;margin-top:11px}
+.auth-email-actions .btn{flex:1;padding:11px}
+.auth-link{border:0;background:transparent;color:var(--green);text-decoration:underline;font-weight:750;font-size:.85rem;margin-top:10px;padding:5px}
+.auth-dialog .notice{line-height:1.5}
+.mobile-nav{display:none}
+@media(max-width:900px){.dashboard-grid{grid-template-columns:1fr}.content-grid,.training-list{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.navlinks button{padding:8px;font-size:.78rem}}
+@media(max-width:650px){body{padding-bottom:68px}.topbar{position:sticky}.nav{min-height:64px;flex-wrap:nowrap}.navlinks{display:none}.nav-cta{display:none}.hero{padding-top:32px}.hero-art{min-height:270px}.dashboard{padding-top:15px}.dashboard-welcome{align-items:flex-start;flex-direction:column;gap:8px}.dash-card{padding:18px}.dash-metrics{gap:7px}.dash-metric{padding:10px}.dash-metric strong{font-size:1.25rem}.dash-metric span{font-size:.68rem}.dash-actions{grid-template-columns:1fr 1fr}.dash-action{padding:10px;gap:8px}.dash-action .action-icon{width:32px;height:32px}.content-grid,.training-list{grid-template-columns:1fr}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mobile-nav{position:fixed;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;bottom:0;left:0;right:0;z-index:40;padding:7px 8px max(7px,env(safe-area-inset-bottom));background:#fffefaee;backdrop-filter:blur(16px);border-top:1px solid var(--line)}.mobile-nav button{border:0;background:transparent;color:var(--muted);display:grid;justify-items:center;gap:3px;padding:5px 1px;font-size:.67rem;font-weight:750}.mobile-nav button span:first-child{font-size:1rem;line-height:1.2}.mobile-nav button.active{color:var(--green)}.auth-nav{padding:8px 10px}.auth-nav .auth-label{display:none}.auth-dialog{max-height:90vh;overflow:auto}.auth-email-actions{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.dash-action,.mission-row{transition:none}}
+
 </style>
 </head>
 <body>
 <header class="topbar"><div class="wrap nav">
 <a class="brand" href="#home" aria-label="Hodný pes — domů"><span class="brand-mark">🐾</span><span>hodný pes<small>vztah • důvěra • pohoda</small></span></a>
-<nav class="navlinks" aria-label="Hlavní navigace"><button class="active" data-go="walk">Procházka</button><button data-go="profile">Profil psa</button><button data-go="quiz">Trénink na míru</button></nav>
+<nav class="navlinks" aria-label="Hlavní navigace"><button class="active" data-go="dashboard">Přehled</button><button data-go="walk">Procházka</button><button data-go="profile">Pes</button><button data-go="training">Trénink</button><button data-go="community">Komunita</button></nav>
 <div style="display:flex;align-items:center;gap:9px"><button class="auth-nav" id="auth-open" type="button" aria-haspopup="dialog"><span class="gmark" aria-hidden="true">G</span><span class="auth-label" id="auth-nav-label">Přihlásit přes Google</span></button><a class="nav-cta" href="https://hodnypes.cz/" target="_blank" rel="noopener">Poznat Hodného psa ↗</a></div>
 </div></header>
 <main id="home">
@@ -49,6 +142,22 @@
 <div><div class="eyebrow"><span class="dot"></span> Malé kroky, velká důvěra</div><h1>Šťastnější pes.<br><em>Klidnější společný život.</em></h1><p>Každý pes je jiný. Zjistěte hravou formou, jak podpořit jeho pohodu, vytvořte mu vlastní psí kartičku a objevte trénink, který vám bude sedět.</p><div class="hero-actions"><button class="btn" data-go="walk">Vyzkoušet procházku <span>→</span></button><button class="btn light" data-go="quiz">Najít vhodný trénink</button></div><div class="hero-note"><span>🌿</span> Pozitivně, s respektem a bez zbytečného tlaku.</div></div>
 <div class="hero-art" aria-label="Ilustrace veselého psa v přírodě"><div class="sun"></div><div class="hill"></div><div class="hill h2"></div><div class="dog-emoji" aria-hidden="true">🐕</div><div class="floating float-a">Každý pokrok se počítá<span>I ten úplně malý.</span></div><div class="floating float-b">+1 společný zážitek <span>Budujeme důvěru.</span></div></div>
 </section>
+
+<section class="dashboard wrap" id="dashboard">
+ <div class="dashboard-welcome"><div><div class="eyebrow"><span class="dot"></span> Váš prostor pro společný růst</div><h2 id="dashboard-greeting">Dobrý den, pejskaři.</h2><p id="dashboard-subtitle">Začněte malým krokem. Váš pokrok se počítá — i když máte dnes jen pět minut.</p></div><span class="dash-badge" id="cloud-badge">Režim návštěvníka</span></div>
+ <div class="dashboard-grid">
+  <article class="dash-card dash-hero"><div class="eyebrow" style="color:#dce8d6">Váš dnešní přehled</div><h3 id="dash-dog-title">Každý den můžete být lepší tým.</h3><p id="dash-dog-copy">Vytvořte profil psa a uložte si společné úspěchy. Přihlášení není nutné k vyzkoušení aktivit.</p><div class="dash-metrics"><div class="dash-metric"><strong id="dash-points">0</strong><span>bodů pohody</span></div><div class="dash-metric"><strong id="dash-missions">0/3</strong><span>dnešní mise</span></div><div class="dash-metric"><strong id="dash-activities">0</strong><span>aktivit</span></div></div><button class="btn" data-go="missions">Pokračovat v dnešní výzvě →</button></article>
+  <article class="dash-card"><h3>Rychlý start</h3><p>Vyberte, co dnes vašemu parťákovi sedne.</p><div class="dash-actions">
+   <button class="dash-action" data-go="walk"><span class="action-icon">↗</span><span><strong>Psí situace</strong><small>Rozhodování v praxi</small></span></button>
+   <button class="dash-action" data-go="profile"><span class="action-icon">○</span><span><strong>Profil psa</strong><small>Vytvořte kartičku</small></span></button>
+   <button class="dash-action" data-go="quiz"><span class="action-icon">◎</span><span><strong>Trénink na míru</strong><small>Najděte směr</small></span></button>
+   <button class="dash-action" data-go="training"><span class="action-icon">✓</span><span><strong>Mini lekce</strong><small>Tip na dnešek</small></span></button>
+  </div></article>
+  <article class="dash-card"><h3>Dnešní mise</h3><p>Malé úkoly bez tlaku. Za každou dokončenou získáte body.</p><div class="mission-list" id="dashboard-mission-list"></div><button class="btn light" data-go="missions" style="margin-top:14px">Všechny mise</button></article>
+  <article class="dash-card"><h3>Váš postup</h3><p>Pokrok se počítá z dokončených aktivit a misí.</p><div class="progress-summary"><div class="progress-ring" id="dash-ring" style="--progress:0%"><strong id="dash-level">1</strong></div><div><strong id="dash-level-name">Začínáme spolu</strong><p id="dash-level-copy">Dokončete první aktivitu a odemkněte další odznak.</p></div></div><div class="progress" style="margin-top:18px"><span id="dash-level-progress" style="width:0%"></span></div></article>
+ </div>
+</section>
+
 <section class="section wrap" id="walk"><div class="section-head"><div><div class="eyebrow">01 / Zkus si to</div><h2>Procházka s přemýšlením</h2></div><p>Co byste udělali v běžné situaci? Vyberte reakci a zjistěte, co může vašemu psovi opravdu pomoct.</p></div>
 <div class="panel"><div id="walkGame">
 <div class="progress-top"><span id="scenario-count">Situace 1 ze 3</span><span class="score-pill">Pohoda: <b id="score">0</b> bodů</span></div><div class="progress"><span id="progressbar" style="width:33.333%"></span></div>
@@ -78,9 +187,24 @@
 <div class="recommendations" id="recommendations" aria-live="polite"><div class="eyebrow">Váš další krok</div><h3 id="recommend-title" style="font-size:1.65rem;letter-spacing:-.04em;margin:8px 0 17px">Doporučení pro vašeho parťáka</h3><div class="recommend-grid"><article class="recommend-card"><div class="icon">🎓</div><h4 id="course-name">Základní poslušnost</h4><p id="course-copy"></p><a class="btn" href="https://hodnypes.cz/" target="_blank" rel="noopener">Prohlédnout kurzy ↗</a></article><article class="recommend-card"><div class="icon">🦴</div><h4 id="gear-name">Pamlskovník</h4><p id="gear-copy"></p><a class="btn orange" href="https://hodnypes.cz/" target="_blank" rel="noopener">Prohlédnout e-shop ↗</a></article></div><p class="notice" id="recommend-note">Doporučení jsou orientační. Aktuální nabídku kurzů a produktů ověřte na webu Hodný pes.</p></div>
 </div></div></section>
 <section class="closing wrap"><div class="closing-inner"><div><h2>Nejlepší tým? Ten, který roste spolu.</h2><p>Každý společný trénink je příležitost lépe si rozumět. Objevte další možnosti, kurzy a vybavení pro život se psem.</p></div><a class="btn" href="https://hodnypes.cz/" target="_blank" rel="noopener">Navštívit hodnypes.cz ↗</a></div></section>
+
+<section class="section wrap" id="missions"><div class="section-head"><div><div class="eyebrow">04 / Každodenní malé kroky</div><h2>Mise pro vás a vašeho psa</h2></div><p>Žádné závodění. Jen jednoduché nápady, jak si společně vybudovat lepší návyky a důvěru.</p></div><div class="panel"><div class="mission-list" id="all-missions"></div><p class="notice">Mise jsou obecné tipy. Přizpůsobte je věku, zdraví a pohodě psa; pokud se necítí dobře, dejte mu odpočinek.</p></div></section>
+<section class="section wrap" id="training"><div class="section-head"><div><div class="eyebrow">05 / Učení v krátkých dávkách</div><h2>Tréninková akademie</h2></div><p>Krátké a pozitivní lekce, které můžete zařadit do běžného dne. Začněte v klidném prostředí a postupujte podle svého psa.</p></div><div class="training-list">
+<article class="training-step"><span class="step-num">LEKCE 01</span><h3>Odměňte kontakt</h3><p>V klidné místnosti počkejte, až se na vás pes sám podívá. Označte okamžik pochvalou a odměňte. Opakujte jen několikrát a skončete úspěchem.</p><button class="btn light" data-training="contact">Dokončit lekci</button></article>
+<article class="training-step"><span class="step-num">LEKCE 02</span><h3>Dobrovolné přivolání</h3><p>Začněte na krátkou vzdálenost doma. Vyslovte jméno, ustupte o krok a odměňte příchod. Venku používejte dlouhé vodítko a bezpečné prostředí.</p><button class="btn light" data-training="recall">Dokončit lekci</button></article>
+<article class="training-step"><span class="step-num">LEKCE 03</span><h3>Čichací pauza</h3><p>Rozhoďte několik vhodných pamlsků do bezpečné trávy nebo čichací podložky. Nechte psa hledat vlastním tempem a dopřejte mu přestávku.</p><button class="btn light" data-training="sniff">Dokončit lekci</button></article>
+</div></section>
+<section class="section wrap" id="collection"><div class="section-head"><div><div class="eyebrow">06 / Vaše společné úspěchy</div><h2>Sbírka odznaků</h2></div><p>Odznaky se odemykají za skutečné aktivity v této aplikaci. Nejsou to odborná osvědčení ani hodnocení psa.</p></div><div class="collection-grid" id="collection-grid"></div></section>
+<section class="section wrap" id="shop"><div class="section-head"><div><div class="eyebrow">07 / Další inspirace</div><h2>Kurzy a výbava Hodný pes</h2></div><p>Pro konkrétní nabídku kurzů a produktů přejděte na oficiální web. Odkazy níže vedou na hlavní stránku, dokud neověříme přesné adresy.</p></div><div class="content-grid">
+<article class="feature-card"><div class="feature-icon">01</div><h3>Výcvik a kurzy</h3><p>Najděte si podporu podle věku, zkušeností a potřeb vašeho psa.</p><a class="btn" href="https://hodnypes.cz/" target="_blank" rel="noopener">Prohlédnout kurzy ↗</a></article>
+<article class="feature-card"><div class="feature-icon">02</div><h3>Pomůcky pro trénink</h3><p>Vybírejte bezpečné a pohodlné pomůcky podle toho, co se právě učíte.</p><a class="btn" href="https://hodnypes.cz/" target="_blank" rel="noopener">Navštívit e-shop ↗</a></article>
+<article class="feature-card"><div class="feature-icon">03</div><h3>Osobní doporučení</h3><p>Vyplňte krátký kvíz a získejte orientační doporučení dalšího kroku.</p><button class="btn light" data-go="quiz">Spustit kvíz →</button></article>
+</div></section>
+<section class="section wrap" id="community"><div class="section-head"><div><div class="eyebrow">08 / Psí komunita</div><h2>Malé radosti, které stojí za sdílení</h2></div><p>Sdílejte vlastní tip nebo úspěch. Příspěvky jsou veřejné, proto nezveřejňujte kontaktní údaje ani citlivé informace.</p></div><div class="panel"><form class="community-form" id="community-form"><div class="field"><label for="community-body">Co se vám dnes povedlo?</label><textarea id="community-body" maxlength="500" placeholder="Např. dnes jsme poprvé v klidu minuli jiného psa..." required></textarea><span class="help">Maximálně 500 znaků. Příspěvek se zveřejní pod jménem účtu a jménem psa, pokud jste přihlášeni.</span></div><button class="btn" type="submit" id="community-submit">Sdílet příspěvek</button><p class="notice" id="community-status" role="status">Příspěvky komunity se načítají…</p></form><div class="community-feed" id="community-feed"><div class="empty-state">Načítám příspěvky…</div></div></div></section>
+
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Hodný pes · Vztah na prvním místě.</span><span>Vytvořeno s láskou ke psům 🐾 · <a href="https://hodnypes.cz/" target="_blank" rel="noopener">hodnypes.cz</a></span></div></footer>
-<dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title"><div class="auth-inner"><button class="auth-close" id="auth-close" type="button" aria-label="Zavřít">×</button><div class="auth-kicker">Hodný pes · osobní účet</div><h2 class="auth-title" id="auth-title">Váš psí svět. Na jednom místě.</h2><p class="auth-copy" id="auth-copy">Přihlaste se bezpečně přes Google. Přihlášení umožní navázat osobní účet; ukládání pokroku do cloudu bude doplněno samostatně.</p><div id="auth-user" hidden></div><button class="google-btn" id="google-sign-in" type="button"><span class="google-logo" aria-hidden="true">G</span><span>Pokračovat přes Google</span></button><div class="auth-status" id="auth-status" role="status" aria-live="polite">Pro přihlášení musí být poskytovatel Google povolený v nastavení Supabase Auth.</div><div class="auth-actions" id="auth-actions" hidden><button class="btn light" id="google-sign-out" type="button">Odhlásit se</button><button class="btn" id="auth-done" type="button">Hotovo</button></div><p class="notice">Přihlášením se otevře ověřovací stránka Google. Heslo Google nikdy nezadávejte přímo do tohoto webu.</p></div></dialog>
+<dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title"><div class="auth-inner"><button class="auth-close" id="auth-close" type="button" aria-label="Zavřít">×</button><div class="auth-kicker">Hodný pes · osobní účet</div><h2 class="auth-title" id="auth-title">Váš psí svět. Na jednom místě.</h2><p class="auth-copy" id="auth-copy">Uložte si profil psa, mise, body a kvízy. Aktivity můžete zkoušet i bez účtu.</p><div id="auth-user" hidden></div><button class="google-btn" id="google-sign-in" type="button"><span class="google-logo" aria-hidden="true">G</span><span>Pokračovat přes Google</span></button><div class="auth-methods"><button class="auth-method active" type="button" data-auth-mode="login">Přihlášení</button><button class="auth-method" type="button" data-auth-mode="signup">Vytvořit účet</button></div><form id="email-auth-form"><div class="auth-fields"><input id="auth-email" type="email" autocomplete="email" placeholder="E-mailová adresa" required maxlength="254"><input id="auth-password" type="password" autocomplete="current-password" placeholder="Heslo (alespoň 8 znaků)" required minlength="8" maxlength="128"></div><div class="auth-email-actions"><button class="btn" id="email-submit" type="submit">Přihlásit se e-mailem</button></div></form><button class="auth-link" type="button" id="auth-reset">Zapomněli jste heslo?</button><div class="auth-status" id="auth-status" role="status" aria-live="polite">Zvolte Google nebo použijte e-mail a heslo.</div><div class="auth-actions" id="auth-actions" hidden><button class="btn light" id="google-sign-out" type="button">Odhlásit se</button><button class="btn" id="auth-done" type="button">Hotovo</button></div><p class="notice">Přihlášení přes Google probíhá na stránce Google. Heslo Google nikdy nezadávejte přímo sem. U e-mailového účtu použijte jedinečné heslo.</p></div></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 (() => {
@@ -129,84 +253,118 @@ $('#recommend-title').textContent=title;$('#course-name').textContent=course;$('
 })();
 </script>
 
+
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL = 'https://krgtpruozlhygziwlwbt.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_IUbDhP7T_2m7XiAKcSg0Ng_v2F4A97e';
-const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
-});
-const dialog = document.getElementById('auth-dialog');
-const openButton = document.getElementById('auth-open');
-const navLabel = document.getElementById('auth-nav-label');
-const signInButton = document.getElementById('google-sign-in');
-const signOutButton = document.getElementById('google-sign-out');
-const doneButton = document.getElementById('auth-done');
-const closeButton = document.getElementById('auth-close');
-const statusBox = document.getElementById('auth-status');
-const userBox = document.getElementById('auth-user');
-const authActions = document.getElementById('auth-actions');
-const setStatus = (message, type = '') => {
-  statusBox.textContent = message;
-  statusBox.className = 'auth-status' + (type ? ' ' + type : '');
-};
-function renderUser(user) {
-  const signedIn = Boolean(user);
-  signInButton.hidden = signedIn;
-  userBox.hidden = !signedIn;
-  authActions.hidden = !signedIn;
-  navLabel.textContent = signedIn ? (user.user_metadata?.full_name || user.user_metadata?.name || 'Můj účet') : 'Přihlásit přes Google';
-  openButton.querySelector('.gmark').textContent = signedIn ? '✓' : 'G';
-  if (signedIn) {
-    const name = user.user_metadata?.full_name || user.user_metadata?.name || 'Přihlášený uživatel';
-    const email = user.email || '';
-    const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || '';
-    userBox.innerHTML = '';
-    const row = document.createElement('div'); row.className = 'auth-user';
-    if (avatar) { const img = document.createElement('img'); img.src = avatar; img.alt = ''; img.referrerPolicy = 'no-referrer'; row.appendChild(img); }
-    else { const initials = document.createElement('div'); initials.className = 'auth-avatar'; initials.textContent = name.trim().slice(0,1).toUpperCase(); row.appendChild(initials); }
-    const details = document.createElement('div');
-    const strong = document.createElement('strong'); strong.textContent = name;
-    const small = document.createElement('small'); small.textContent = email;
-    details.append(strong, small); row.appendChild(details); userBox.appendChild(row);
-    setStatus('Jste přihlášeni. Účet Google funguje; osobní herní pokrok se zatím do cloudu neukládá.', 'success');
-  } else {
-    userBox.innerHTML = '';
-    setStatus('Pro přihlášení musí být poskytovatel Google povolený v nastavení Supabase Auth.');
-  }
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+let session = null, authMode = 'login', cloudReady = false, communityBusy = false;
+const defaults = {points:0,activities:0,completedMissions:[],completedLessons:[],walks:0};
+let app = {...defaults};
+let cloudRow = {display_name:'',dog_profile:{},progress:{},missions:{},card_profile:{},quiz_results:{}};
+const missionDefs = [
+ {id:'walk',title:'Zvládněte psí situace',desc:'Vyzkoušejte všechny tři situace v simulátoru.',points:10},
+ {id:'profile',title:'Vytvořte psí profil',desc:'Vyplňte jméno a osobnost svého psa.',points:5},
+ {id:'lesson',title:'Dokončete krátkou lekci',desc:'Vyberte si jeden jednoduchý tréninkový tip.',points:5}
+];
+function toast(msg){const el=$('#toast');if(!el)return;el.textContent=msg;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2600)}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function safeDate(v){try{return new Date(v).toLocaleDateString('cs-CZ',{day:'numeric',month:'short'})}catch{return ''}}
+function localSave(){try{localStorage.setItem('hodny-pes-app-state-v2',JSON.stringify({app,dog_profile:readDogForm(),card_profile:readCardForm(),quiz_results:window.hodnyQuiz||{}}))}catch{}}
+function readDogForm(){return {name:$('#dog-name')?.value.trim()||'',breed:$('#dog-breed')?.value.trim()||'',superpower:$('#dog-power')?.value.trim()||'',challenge:$('#dog-challenge')?.value.trim()||''}}
+function readCardForm(){return {...readDogForm()}}
+function hydrateForms(row){
+ const dog=row?.dog_profile||{},card=row?.card_profile||{};
+ const name=dog.name||card.name||'';
+ if(name)$('#dog-name').value=name;
+ if(dog.breed||card.breed)$('#dog-breed').value=dog.breed||card.breed;
+ if(dog.superpower||card.superpower)$('#dog-power').value=dog.superpower||card.superpower;
+ if(dog.challenge||card.challenge)$('#dog-challenge').value=dog.challenge||card.challenge;
+ if(name){$('#card-name').textContent=name;$('#card-breed').textContent=dog.breed||card.breed||'Jedinečný originál';$('#card-power').textContent=dog.superpower||card.superpower||'Dělá svět lepším';$('#card-challenge').textContent=dog.challenge||card.challenge||'Každý den o kousek dál'}
 }
-openButton.addEventListener('click', () => { if (!dialog.open) dialog.showModal(); });
-closeButton.addEventListener('click', () => dialog.close());
-doneButton.addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
-signInButton.addEventListener('click', async () => {
-  signInButton.disabled = true;
-  setStatus('Přesměrovávám na bezpečné přihlášení Google…');
-  try {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.origin + window.location.pathname }
-    });
-    if (error) throw error;
-    setStatus('Otevírám Google…');
-  } catch (error) {
-    const message = String(error?.message || error);
-    setStatus(message.toLowerCase().includes('provider') || message.toLowerCase().includes('not enabled')
-      ? 'Google přihlášení ještě není povolené v Supabase. V Supabase Dashboard otevři Authentication → Sign In / Providers → Google, vlož Google Client ID a Client Secret a zapni poskytovatele.'
-      : 'Přihlášení se nepodařilo: ' + message, 'error');
-    signInButton.disabled = false;
-  }
-});
-signOutButton.addEventListener('click', async () => {
-  signOutButton.disabled = true;
-  const { error } = await supabase.auth.signOut();
-  signOutButton.disabled = false;
-  if (error) setStatus('Odhlášení se nepodařilo: ' + error.message, 'error');
-});
-supabase.auth.onAuthStateChange((_event, session) => renderUser(session?.user || null));
-supabase.auth.getSession().then(({ data, error }) => {
-  if (error) setStatus('Stav přihlášení se nepodařilo načíst: ' + error.message, 'error');
-  renderUser(data?.session?.user || null);
-});
+function normalizeApp(p){return {...defaults,...(p&&typeof p==='object'?p:{}),completedMissions:Array.isArray(p?.completedMissions)?p.completedMissions:[],completedLessons:Array.isArray(p?.completedLessons)?p.completedLessons:[]}}
+function getMissionDone(id){return app.completedMissions.includes(id)}
+function levelFor(points){if(points>=80)return {level:5,name:'Parťáci na jedničku',next:100};if(points>=50)return {level:4,name:'Tým v růstu',next:80};if(points>=30)return {level:3,name:'Všímavý parťák',next:50};if(points>=15)return {level:2,name:'Dobře našlápnuto',next:30};return {level:1,name:'Začínáme spolu',next:15}}
+function renderMissions(){
+ const render=(target)=>{const el=$(target);if(!el)return;el.innerHTML='';missionDefs.forEach(m=>{const done=getMissionDone(m.id);const row=document.createElement('label');row.className='mission-row'+(done?' done':'');const input=document.createElement('input');input.type='checkbox';input.checked=done;input.disabled=done;input.setAttribute('aria-label',m.title);input.addEventListener('change',()=>completeMission(m.id));const copy=document.createElement('span');copy.innerHTML='<strong>'+escapeHtml(m.title)+'</strong><small>'+escapeHtml(m.desc)+' · +'+m.points+' bodů</small>';row.append(input,copy);el.appendChild(row)})};
+ renderMissionsToAll(render);
+}
+function renderMissionsToAll(render){render('#dashboard-mission-list');render('#all-missions')}
+function completeMission(id){
+ const m=missionDefs.find(x=>x.id===id);if(!m||getMissionDone(id))return;
+ app.completedMissions.push(id);app.points+=m.points;app.activities+=1;
+ renderApp();persistApp();toast('Mise dokončena · +'+m.points+' bodů');
+}
+function renderCollection(){
+ const grid=$('#collection-grid');if(!grid)return;const items=[
+ {id:'first',icon:'01',name:'První krok',desc:'Dokončete první aktivitu',unlocked:app.activities>=1},
+ {id:'walk',icon:'02',name:'Všímavý venčitel',desc:'Dokončete simulátor',unlocked:app.walks>=1},
+ {id:'profile',icon:'03',name:'Psí osobnost',desc:'Vyplňte profil psa',unlocked:Boolean(readDogForm().name)},
+ {id:'missions',icon:'04',name:'Plánovač',desc:'Dokončete všechny mise',unlocked:app.completedMissions.length>=3},
+ {id:'lessons',icon:'05',name:'Tréninkový parťák',desc:'Dokončete lekci',unlocked:app.completedLessons.length>=1},
+ {id:'quiz',icon:'06',name:'Hledač řešení',desc:'Vyplňte tréninkový kvíz',unlocked:Boolean(window.hodnyQuizCompleted)},
+ {id:'points',icon:'07',name:'Malé vítězství',desc:'Získejte 30 bodů',unlocked:app.points>=30},
+ {id:'community',icon:'08',name:'Sdílíme zkušenosti',desc:'Napište příspěvek',unlocked:Boolean(app.communityPost)}
+ ];grid.innerHTML='';items.forEach(it=>{const card=document.createElement('div');card.className='collectible'+(it.unlocked?'':' locked');card.innerHTML='<div class="collect-icon">'+(it.unlocked?'✓':'·')+'</div><strong>'+escapeHtml(it.name)+'</strong><small>'+(it.unlocked?'Odznak odemčen':escapeHtml(it.desc))+'</small>';grid.appendChild(card)})}
+function renderApp(){
+ $('#dash-points').textContent=app.points;$('#dash-missions').textContent=app.completedMissions.length+'/3';$('#dash-activities').textContent=app.activities;
+ const dog=readDogForm();$('#dash-dog-title').textContent=dog.name?'Ahoj, '+dog.name+'!':'Každý den můžete být lepší tým.';
+ $('#dash-dog-copy').textContent=dog.name?'Dnes stačí jeden malý krok s '+dog.name+'. Nezapomeňte odměnit klid a spolupráci.':'Vytvořte profil psa a uložte si společné úspěchy. Přihlášení není nutné k vyzkoušení aktivit.';
+ const level=levelFor(app.points),prev=level.level===1?0:level.level===2?15:level.level===3?30:level.level===4?50:80;
+ const pct=Math.max(0,Math.min(100,((app.points-prev)/(level.next-prev))*100));$('#dash-ring').style.setProperty('--progress',pct+'%');$('#dash-level').textContent=level.level;$('#dash-level-name').textContent=level.name;$('#dash-level-copy').textContent=app.points>=100?'Dosáhli jste nejvyšší úrovně v této verzi.':Math.max(0,level.next-app.points)+' bodů do další úrovně.';$('#dash-level-progress').style.width=pct+'%';
+ $('#dashboard-greeting').textContent=session?(session.user.user_metadata?.full_name||session.user.user_metadata?.name||'Vítejte zpět')+'!':'Dobrý den, pejskaři.';
+ $('#dashboard-subtitle').textContent=session?'Váš pokrok se synchronizuje s osobním účtem.':'Zkoušejte funkce bez účtu. Přihlaste se, pokud chcete svůj postup synchronizovat.';
+ $('#cloud-badge').textContent=session?(cloudReady?'Účet synchronizován':'Připojování účtu…'):'Režim návštěvníka';
+ renderMissions();renderCollection();
+}
+async function persistApp(){
+ localSave();
+ if(!session?.user)return;
+ const dog=readDogForm();
+ const payload={user_id:session.user.id,display_name:session.user.user_metadata?.full_name||session.user.user_metadata?.name||session.user.email||'',dog_profile:dog,progress:app,missions:{completed:app.completedMissions},card_profile:readCardForm(),quiz_results:window.hodnyQuiz||{},updated_at:new Date().toISOString()};
+ const {error}=await supabase.from('user_app_data').upsert(payload,{onConflict:'user_id'});
+ if(error){console.error('Cloud save failed',error);$('#cloud-badge').textContent='Chyba synchronizace';toast('Pokrok se nepodařilo uložit do cloudu. Zůstává v tomto zařízení.')}else{$('#cloud-badge').textContent='Účet synchronizován';cloudReady=true}
+}
+async function loadAppData(user){
+ cloudReady=false;renderApp();
+ const {data,error}=await supabase.from('user_app_data').select('*').eq('user_id',user.id).maybeSingle();
+ if(error){console.error('Cloud load failed',error);$('#cloud-badge').textContent='Chyba synchronizace';setStatus('Přihlášení funguje, ale načtení profilu se nepodařilo: '+error.message,'error');return}
+ if(data){cloudRow=data;app=normalizeApp(data.progress);hydrateForms(data);window.hodnyQuiz=data.quiz_results||{};window.hodnyQuizCompleted=Boolean(data.quiz_results&&Object.keys(data.quiz_results).length);if(window.hodnyQuiz.age){$$('.options').forEach(group=>{const value=window.hodnyQuiz[group.dataset.question];if(value)group.querySelectorAll('.option').forEach(b=>b.classList.toggle('selected',b.dataset.value===value))})}}
+ else {try{const local=JSON.parse(localStorage.getItem('hodny-pes-app-state-v2')||'{}');if(local.app)app=normalizeApp(local.app);hydrateForms({dog_profile:local.dog_profile,card_profile:local.card_profile});if(local.quiz_results){window.hodnyQuiz=local.quiz_results}}catch{}}
+ cloudReady=true;renderApp();await persistApp();await loadCommunity();
+}
+function renderUser(user){
+ const signed=Boolean(user);$('#google-sign-in').hidden=signed;$('#email-auth-form').hidden=signed;$('.auth-methods').hidden=signed;$('#auth-reset').hidden=signed;$('#auth-user').hidden=!signed;$('#auth-actions').hidden=!signed;
+ $('#auth-nav-label').textContent=signed?(user.user_metadata?.full_name||user.user_metadata?.name||'Můj účet'):'Přihlásit / účet';
+ $('#auth-open .gmark').textContent=signed?'✓':'G';
+ if(signed){const name=user.user_metadata?.full_name||user.user_metadata?.name||'Přihlášený uživatel',email=user.email||'',avatar=user.user_metadata?.avatar_url||user.user_metadata?.picture||'';const row=document.createElement('div');row.className='auth-user';if(avatar){const img=document.createElement('img');img.src=avatar;img.alt='';img.referrerPolicy='no-referrer';row.appendChild(img)}else{const ini=document.createElement('div');ini.className='auth-avatar';ini.textContent=name.slice(0,1).toUpperCase();row.appendChild(ini)}const details=document.createElement('div'),strong=document.createElement('strong'),small=document.createElement('small');strong.textContent=name;small.textContent=email;details.append(strong,small);row.appendChild(details);$('#auth-user').replaceChildren(row);setStatus('Jste přihlášeni. Váš osobní pokrok se ukládá do Supabase.','success')}else{$('#auth-user').replaceChildren();setStatus('Zvolte Google nebo použijte e-mail a heslo.')}
+ renderApp();
+}
+function setStatus(message,type=''){const el=$('#auth-status');el.textContent=message;el.className='auth-status'+(type?' '+type:'')}
+$('#auth-open').addEventListener('click',()=>{if(!$('#auth-dialog').open)$('#auth-dialog').showModal()});
+$('#auth-close').addEventListener('click',()=>$('#auth-dialog').close());$('#auth-done').addEventListener('click',()=>$('#auth-dialog').close());$('#auth-dialog').addEventListener('click',e=>{if(e.target===$('#auth-dialog'))$('#auth-dialog').close()});
+$$('[data-auth-mode]').forEach(btn=>btn.addEventListener('click',()=>{authMode=btn.dataset.authMode;$$('[data-auth-mode]').forEach(x=>x.classList.toggle('active',x===btn));$('#email-submit').textContent=authMode==='signup'?'Vytvořit účet':'Přihlásit se e-mailem';$('#auth-password').autocomplete=authMode==='signup'?'new-password':'current-password';setStatus(authMode==='signup'?'Vytvořte účet. Pokud je zapnuté potvrzení e-mailu, zkontrolujte doručenou zprávu.':'Zadejte e-mail a heslo ke svému účtu.')}));
+$('#google-sign-in').addEventListener('click',async()=>{const b=$('#google-sign-in');b.disabled=true;setStatus('Přesměrovávám na bezpečné přihlášení Google…');try{const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin+window.location.pathname}});if(error)throw error;setStatus('Otevírám Google…')}catch(e){setStatus('Google OAuth není dostupné nebo není nakonfigurované: '+(e.message||e)+'. V Supabase je potřeba povolit Google provider a zadat Client ID a Client Secret.','error');b.disabled=false}});
+$('#email-auth-form').addEventListener('submit',async e=>{e.preventDefault();const email=$('#auth-email').value.trim(),password=$('#auth-password').value,b=$('#email-submit');if(password.length<8){setStatus('Heslo musí mít alespoň 8 znaků.','error');return}b.disabled=true;setStatus(authMode==='signup'?'Vytvářím účet…':'Přihlašuji…');try{const result=authMode==='signup'?await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+window.location.pathname}}):await supabase.auth.signInWithPassword({email,password});if(result.error)throw result.error;if(authMode==='signup'&&!result.data.session){setStatus('Účet byl vytvořen. Pokud Supabase vyžaduje potvrzení e-mailu, otevřete potvrzovací odkaz z doručené zprávy.','success')}else{setStatus('Přihlášení proběhlo úspěšně.','success')}}catch(err){setStatus('Přihlášení se nepodařilo: '+(err.message||err),'error')}finally{b.disabled=false}});
+$('#auth-reset').addEventListener('click',async()=>{const email=$('#auth-email').value.trim();if(!email){setStatus('Nejdřív zadejte e-mailovou adresu.','error');$('#auth-email').focus();return}const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname});if(error)setStatus('Odeslání odkazu se nepodařilo: '+error.message,'error');else setStatus('Pokud je účet pro tento e-mail dostupný, přijde zpráva s odkazem pro obnovu hesla.','success')});
+$('#google-sign-out').addEventListener('click',async()=>{const {error}=await supabase.auth.signOut();if(error)setStatus('Odhlášení se nepodařilo: '+error.message,'error');else{$('#auth-dialog').close();toast('Byli jste odhlášeni.')}});
+supabase.auth.onAuthStateChange((event,newSession)=>{session=newSession;renderUser(newSession?.user||null);if(event==='SIGNED_IN'&&newSession?.user){setTimeout(()=>loadAppData(newSession.user),0)}if(event==='SIGNED_OUT'){app={...defaults};cloudReady=false;renderApp();localSave();loadCommunity()}});
+try{const {data,error}=await supabase.auth.getSession();if(error)throw error;session=data.session;renderUser(session?.user||null);if(session?.user)await loadAppData(session.user);else{try{const local=JSON.parse(localStorage.getItem('hodny-pes-app-state-v2')||'{}');if(local.app)app=normalizeApp(local.app);hydrateForms({dog_profile:local.dog_profile,card_profile:local.card_profile});window.hodnyQuiz=local.quiz_results||{}}catch{}renderApp();await loadCommunity()}}catch(e){console.error(e);setStatus('Nepodařilo se načíst přihlášení: '+e.message,'error')}
+const originalSubmit=$('#dog-form').onsubmit;
+$('#dog-form').addEventListener('submit',()=>{app.activities=Math.max(app.activities,1);if(!app.completedMissions.includes('profile')){app.completedMissions.push('profile');app.points+=5}renderApp();persistApp()});
+$('#next-scenario').addEventListener('click',()=>{if($('#walkGame').style.display==='none'&& !app.completedMissions.includes('walk')){app.walks+=1;app.activities+=1;app.completedMissions.push('walk');app.points+=10;renderApp();persistApp()}});
+$$('[data-training]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.training;if(!app.completedLessons.includes(id)){app.completedLessons.push(id);app.activities+=1;app.points+=5;btn.textContent='Lekce dokončena';btn.disabled=true;renderApp();persistApp();toast('Lekce dokončena · +5 bodů')}else toast('Tuto lekci už máte dokončenou.')}));
+$('#quiz-form').addEventListener('submit',()=>{window.hodnyQuiz={...window.hodnyQuiz,...window.quizValues};window.hodnyQuizCompleted=true;app.activities+=1;app.points+=3;renderApp();persistApp()});
+$('#community-form').addEventListener('submit',async e=>{e.preventDefault();const body=$('#community-body').value.trim();if(!body)return;if(!session?.user){setStatus('Přihlaste se, pokud chcete zveřejnit příspěvek. Číst komunitu můžete i bez účtu.');$('#auth-dialog').showModal();return}const b=$('#community-submit');b.disabled=true;$('#community-status').textContent='Zveřejňuji příspěvek…';try{const {error}=await supabase.from('community_posts').insert({user_id:session.user.id,display_name:session.user.user_metadata?.full_name||session.user.user_metadata?.name||session.user.email||'Pejskař',dog_name:readDogForm().name||'Můj pes',body});if(error)throw error;$('#community-body').value='';app.communityPost=true;app.activities+=1;renderApp();await persistApp();await loadCommunity();$('#community-status').textContent='Příspěvek byl zveřejněn.'}catch(err){$('#community-status').textContent='Příspěvek se nepodařilo zveřejnit: '+err.message}finally{b.disabled=false}});
+async function loadCommunity(){const feed=$('#community-feed');if(!feed)return;const {data,error}=await supabase.from('community_posts').select('id,user_id,display_name,dog_name,body,created_at').order('created_at',{ascending:false}).limit(20);feed.innerHTML='';if(error){feed.innerHTML='<div class="empty-state">Komunitní příspěvky se nepodařilo načíst. Zkontrolujte připojení a nastavení Data API.</div>';return}if(!data?.length){feed.innerHTML='<div class="empty-state">Zatím tu nejsou žádné příspěvky. Přihlaste se a sdílejte první malý úspěch se psem.</div>';return}data.forEach(post=>{const el=document.createElement('article');el.className='community-post';const head=document.createElement('div');head.className='community-post-head';const avatar=document.createElement('div');avatar.className='community-avatar';avatar.textContent=(post.display_name||'P').trim().slice(0,1).toUpperCase();const info=document.createElement('div'),name=document.createElement('strong'),meta=document.createElement('small');name.textContent=post.display_name+' · '+post.dog_name;meta.textContent=safeDate(post.created_at);info.append(name,meta);head.append(avatar,info);const body=document.createElement('p');body.textContent=post.body;el.append(head,body);if(session?.user?.id===post.user_id){const del=document.createElement('button');del.className='auth-link';del.textContent='Smazat můj příspěvek';del.addEventListener('click',async()=>{if(!confirm('Opravdu smazat tento příspěvek?'))return;const {error}=await supabase.from('community_posts').delete().eq('id',post.id);if(error)toast('Příspěvek se nepodařilo smazat.');else loadCommunity()});el.appendChild(del)}feed.appendChild(el)})}
+const oldNavGo=window.go;
+$$('[data-go]').forEach(btn=>{btn.addEventListener('click',()=>{const id=btn.dataset.go;document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});$$('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));$('#auth-dialog')?.open&&$('#auth-dialog').close()})});
+const mobileNav=document.createElement('nav');mobileNav.className='mobile-nav';mobileNav.setAttribute('aria-label','Mobilní navigace');[['dashboard','⌂','Přehled'],['walk','↗','Procházka'],['profile','○','Můj pes'],['missions','✓','Mise'],['community','◎','Komunita']].forEach(([id,icon,label],i)=>{const b=document.createElement('button');b.type='button';b.className=i===0?'active':'';b.innerHTML='<span aria-hidden="true">'+icon+'</span><span>'+label+'</span>';b.addEventListener('click',()=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});mobileNav.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b))});mobileNav.appendChild(b)});document.body.appendChild(mobileNav);
+window.quizValues={age:'puppy',stress:'learning',goal:'basics'};
+$$('.options').forEach(group=>group.addEventListener('click',e=>{const b=e.target.closest('.option');if(b&&group.dataset.question)window.quizValues[group.dataset.question]=b.dataset.value}));
+renderApp();
 </script>
 </body></html>
