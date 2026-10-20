@@ -41,4 +41,4 @@ $('#event-admin-form')?.addEventListener('submit',async e=>{e.preventDefault();c
 $('#role-admin-form')?.addEventListener('submit',async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));const {error}=await db.from('user_roles').upsert({user_id:f.user_id.trim(),role:f.role});if(error)status('Roli se nepodařilo uložit: '+error.message,'error');else{status('Role uložena.','success');e.target.reset();loadRoles()}});
 }catch(e){status('Administraci se nepodařilo načíst: '+e.message,'error')}}
 }
-refreshAuth().then(()=>{updateNav();initPage()});
+refreshAuth().then(()=>{updateNav();if(page==='auth'&&session){location.replace('/akademie/');return}initPage()});
