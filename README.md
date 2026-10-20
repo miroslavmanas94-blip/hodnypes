@@ -36,6 +36,16 @@ Role správce se záměrně nepřiděluje automaticky a žádný návštěvník 
 
 Po přidělení role se v /administrace/ zobrazí správa obsahu, akcí, rolí a seznamu profilů akademie. Změny rolí prováděj pouze pro ověřené účty.
 
+## Akademie a katalogy (aktuální rozšíření)
+- `public.dog_profiles` ukládá více profilů psů na jeden účet; původní `public.user_app_data.dog_profile` zůstává zachované. Pokud se při prvním otevření profilů najde starý JSON profil a žádný nový profil, aplikace jej zkopíruje do nového seznamu a původní záznam nemaže.
+- `public.breed_catalog` poskytuje vyhledávání plemen, aliasů, registru a stavu uznání. Katalog je rozšiřitelný administrací; jsou zahrnuté kříženec, neznámé plemeno a ruční zadání. **Výchozí seznam zatím není úplný celosvětový soupis všech uznaných i místních plemen.** Záznam označ jako ověřený pouze po kontrole uvedeného zdroje. Hlavní referenční seznamy: [FCI nomenklatura](https://www.fci.be/en/nomenclature/Default.aspx), [FCI provizorně uznaná plemena](https://www.fci.be/EN/nomenclature/provisoire.aspx).
+- `public.academy_catalog` uchovává katalogy barev, aktivit, vybavení, chování, zdravotních pojmů, soutěží, věkových etap a dovedností.
+- `public.academy_content` uchovává spravované lekce, mise, kvízy, kurzy a soutěže. Publikovaný obsah se načítá v příslušných částech akademie.
+- `public.academy_completions`, `public.dog_puller_sessions`, `public.quiz_attempts`, `public.academy_reminders` a `public.academy_certificates` uchovávají historii, záznamy Dog Puller, kvízy, připomínky a potvrzení dokončení.
+- Administrace obsahuje správu veřejného obsahu, událostí, uživatelských rolí, katalogu plemen, dalších katalogů, obsahu akademie a souhrnu postupu.
+- Připomínky se ukládají do databáze, ale **zatím neposílají push oznámení ani e-maily**. Fotografie psa se v současnosti ukládá jako URL; nahrávání souborů do Supabase Storage není nakonfigurované.
+- Certifikáty jsou interní potvrzení aplikace, ne oficiální kvalifikace ani potvrzení od trenéra. Zdravotní a behaviorální informace v katalogu nenahrazují veterinární péči ani individuální doporučení kvalifikovaného odborníka.
+
 ## Nasazení
 Projekt Cloudflare Pages hodnypes je propojený s repozitářem miroslavmanas94-blip/hodnypes, produkční větev main, výstupní adresář . a prázdný build příkaz. Push do main automaticky spustí nasazení; po změnách ve functions/ ověř stav v Cloudflare Pages.
 
