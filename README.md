@@ -1,40 +1,51 @@
-# Hodný pes — interaktivní zážitek
+# Hodný pes — osobní psí dashboard
 
-Jednostránková responzivní česká aplikace pro Hodný pes (hodnypes.cz), publikovaná přes Cloudflare Pages.
+Responzivní česká aplikace pro Hodný pes (hodnypes.cz), publikovaná přes Cloudflare Pages.
 
-## Funkce
-- Interaktivní simulátor tří běžných situací při venčení s vysvětlující zpětnou vazbou.
-- Generátor personalizované psí kartičky s exportem PNG a možností sdílení.
-- Krátký kvíz s orientačním doporučením tréninku a pomůcky.
-- Google OAuth přihlášení přes Supabase Auth; zobrazení profilu přihlášeného uživatele a odhlášení.
-- Responzivní rozvržení, přístupné ovládání a podpora omezení pohybu.
-- Statické HTML/CSS/JavaScript v `index.html`, bez build kroku.
+## Co aplikace obsahuje
+- Dashboard s body pohody, úrovní, aktivitami a denními misemi.
+- Interaktivní simulátor tří situací při venčení s vysvětlující zpětnou vazbou.
+- Profil psa a generátor psí kartičky s exportem PNG a sdílením.
+- Kvíz s orientačními doporučeními pro trénink a výbavu.
+- Krátké tréninkové lekce, sbírku odznaků a odkazy na kurzy/e-shop.
+- Komunitní příspěvky; číst je lze veřejně, zveřejňovat může přihlášený uživatel.
+- Přihlášení přes Google OAuth nebo e-mail/heslo pomocí Supabase Auth.
+- Uložený profil psa, postup, mise, kartička a výsledky kvízu v Supabase. Pro návštěvníky bez účtu se používá lokální uložení v prohlížeči.
+- Responzivní navigaci včetně spodní navigace na mobilu.
 
-## Google OAuth — nutné dokončení konfigurace
+## Cloudflare Pages
+- Projekt: `hodnypes`
+- Produkční větev: `main`
+- Výstupní adresář: `.`
+- Build příkaz: prázdný (statický HTML/CSS/JavaScript)
 
-Kód přihlášení je připravený, ale Google provider se nedá bezpečně aktivovat jen z veřejného front-endu. Je potřeba jednorázově nastavit OAuth přihlašovací údaje:
+## Supabase databáze a bezpečnost
+Projekt `hodnypes` obsahuje:
+- `public.user_app_data` — řádek pro každého uživatele, jehož přístup chrání RLS; uživatel může číst a upravovat pouze svůj vlastní řádek.
+- `public.community_posts` — veřejně čitelné příspěvky; zápis a mazání jsou omezeny na vlastníka přihlášeného účtu.
 
-1. V [Google Cloud Console](https://console.cloud.google.com/) vytvoř OAuth 2.0 Client ID pro aplikaci typu **Web application** a nakonfiguruj consent screen.
-2. V Supabase Dashboard projektu `hodnypes` otevři **Authentication → Sign In / Providers → Google**. Zapni Google a vlož Client ID a Client Secret z Google Cloud Console.
-3. V nastavení Google OAuth přidej do **Authorized redirect URIs** přesnou callback URL z nastavení Supabase Authentication (obvykle `https://krgtpruozlhygziwlwbt.supabase.co/auth/v1/callback`).
-4. V Supabase **Authentication → URL Configuration** nastav Site URL na produkční doménu `https://hodnypes.pages.dev` a přidej mezi Redirect URLs:
-   - `https://hodnypes.pages.dev/**`
-   - `https://*.hodnypes.pages.dev/**` (jen pokud chceš používat i náhledové deploymenty)
-   - případně vlastní doménu, až bude k projektu skutečně připojena.
-5. Ulož nastavení a otestuj přihlášení v anonymním okně prohlížeče.
+Fotografie z generátoru kartiček zůstává lokálně v prohlížeči a není nahrávána do cloudu. Cloudový profil uchovává textové údaje a výsledky aktivit. Nikdy nevkládej Supabase service-role klíč ani OAuth secret do veřejného HTML.
 
-**Nikdy nedávej Google Client Secret do `index.html`, GitHubu ani do veřejných proměnných.** Secret patří pouze do nastavení Supabase. Veřejný Supabase publishable key v klientském kódu je určený pro front-end; databázové tabulky a ukládání osobních údajů vyžadují samostatné RLS zásady.
+## Google OAuth — nutný ruční krok
+Kód volá Supabase OAuth, ale poskytovatele Google nelze dokončit bez Client ID a Client Secret vytvořených ve tvém Google Cloud projektu. Tyto údaje nebyly vygenerovány ani vloženy do repozitáře.
 
-## Ukládání a soukromí
-- Google přihlášení pracuje přes Supabase Auth.
-- V této verzi se profil uživatele zobrazuje v prohlížeči po přihlášení; **osobní herní pokrok se zatím do databáze neukládá**.
-- Nahraná fotka pro kartičku zůstává v prohlížeči a není uploadována na server.
-- K ukládání psího profilu, výsledků a misí do cloudu je potřeba navrhnout tabulky a bezpečné Row Level Security (RLS) politiky.
+1. Otevři [Google Cloud Console](https://console.cloud.google.com/) a vytvoř OAuth Client ID typu **Web application**. Nakonfiguruj obrazovku souhlasu (OAuth consent screen / Google Auth Platform).
+2. Do **Authorized JavaScript origins** přidej `https://hodnypes.pages.dev`.
+3. V Supabase Dashboard projektu `hodnypes` otevři **Authentication → Sign In / Providers → Google**. Zkopíruj z této obrazovky přesnou callback URL projektu.
+4. Přesnou callback URL vlož do Google Cloud pole **Authorized redirect URIs**. Obvykle má tvar `https://krgtpruozlhygziwlwbt.supabase.co/auth/v1/callback`; použij hodnotu z aktuálního Supabase Dashboardu.
+5. Vrať se do Supabase, zapni Google provider a vlož Google Client ID a Client Secret.
+6. V **Authentication → URL Configuration** nastav Site URL na `https://hodnypes.pages.dev` a do Redirect URLs přidej `https://hodnypes.pages.dev/**`. Pokud budeš používat vlastní doménu, přidej její konkrétní HTTPS URL.
+7. Otestuj přihlášení přes Google v anonymním okně.
 
-## Spuštění
-Otevři `index.html` nebo publikuj repozitář jako statický web na Cloudflare Pages (produkční větev `main`, výstupní adresář `.`, bez build příkazu).
+**Client Secret patří pouze do Supabase, nikdy do GitHubu ani do `index.html`.** Přesný návod v dokumentaci: [Supabase — Sign in with Google](https://supabase.com/docs/guides/auth/social-login/auth-google).
 
-Odkazy na kurzy a e-shop zatím vedou na obecnou domovskou stránku https://hodnypes.cz/, protože konkrétní URL kurzů a produktů je třeba ověřit a doplnit.
+## E-mail a heslo
+Aplikace používá Supabase Auth `signUp`, `signInWithPassword` a obnovu hesla. V Supabase Dashboard zkontroluj, že je povolený e-mailový provider, registrace nových uživatelů a nastavení potvrzení e-mailu. Pokud je potvrzení vyžadováno, uživatel musí kliknout na odkaz v e-mailu. Pro spolehlivé doručování v produkci může být potřeba nakonfigurovat SMTP.
 
-## Poznámka
-Kartička a její odznak jsou hravým marketingovým prvkem, nikoli skutečnou certifikací. Doporučení k tréninku jsou orientační a nenahrazují individuální posouzení kvalifikovaným trenérem.
+## Ověření a omezení
+- Cloudflare Pages deployment pro commit `76e71de43cf0da89bc0715737a76608e18342662` byl potvrzen jako úspěšný.
+- Databázové tabulky byly ověřeny přes Supabase a mají zapnuté RLS.
+- Skutečné přihlášení Google nelze potvrdit do dokončení ruční OAuth konfigurace v Google Cloud a Supabase.
+- Automatizované interakční testy v prohlížeči nebyly provedeny.
+- Odkazy na kurzy a produkty vedou na hlavní stránku https://hodnypes.cz/, protože přesné cílové URL nebyly ověřeny.
+- Odznaky jsou herní prvky, nikoli skutečná certifikace. Tréninková doporučení jsou orientační a nenahrazují individuální radu kvalifikovaného trenéra.
