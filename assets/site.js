@@ -116,3 +116,79 @@ $('#role-admin-form')?.addEventListener('submit',async e=>{e.preventDefault();co
 }catch(e){status('Administraci se nepodařilo načíst: '+e.message,'error')}}
 }
 refreshAuth().then(()=>{updateNav();if(page==='auth'&&session&&!location.hash.includes('type=recovery')&&!location.search.includes('type=recovery')){location.replace(safeNext());return}if(page==='auth'&&(location.hash.includes('type=recovery')||location.search.includes('type=recovery')))authMode('recovery');initPage()});
+
+
+/* Homepage interactions: scene controls, reduced-motion-aware parallax, and feature tabs. */
+(()=>{
+ const scene=document.querySelector('#hero-scene');
+ if(scene){
+  const sunrise=document.querySelector('#scene-sunrise');
+  const evening=document.querySelector('#scene-evening');
+  const motion=document.querySelector('#scene-motion');
+  const setTime=night=>{
+   scene.classList.toggle('is-evening',night);
+   if(sunrise)sunrise.setAttribute('aria-pressed',String(!night));
+   if(evening)evening.setAttribute('aria-pressed',String(night));
+  };
+  sunrise?.addEventListener('click',()=>setTime(false));
+  evening?.addEventListener('click',()=>setTime(true));
+  motion?.addEventListener('click',()=>{
+   const paused=scene.classList.toggle('is-paused');
+   motion.setAttribute('aria-pressed',String(!paused));
+   motion.setAttribute('aria-label',paused?'Spustit animaci':'Pozastavit animaci');
+   motion.textContent=paused?'▶':'Ⅱ';
+  });
+  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  if(reduced){scene.classList.add('is-paused');if(motion){motion.textContent='▶';motion.setAttribute('aria-pressed','false');motion.setAttribute('aria-label','Spustit animaci')}}
+  if(!reduced && window.matchMedia?.('(hover: hover) and (pointer: fine)')?.matches){
+   scene.addEventListener('pointermove',event=>{
+    if(scene.classList.contains('is-paused'))return;
+    const r=scene.getBoundingClientRect(),x=(event.clientX-r.left)/r.width-.5,y=(event.clientY-r.top)/r.height-.5;
+    scene.style.transform='rotateX('+(-y*2.5)+'deg) rotateY('+(x*3)+'deg)';
+    scene.style.setProperty('--pointer-x',(x*12)+'px');scene.style.setProperty('--pointer-y',(y*9)+'px');
+   });
+   scene.addEventListener('pointerleave',()=>{scene.style.transform='';scene.style.setProperty('--pointer-x','0px');scene.style.setProperty('--pointer-y','0px')});
+  }
+ }
+ const panel=document.querySelector('#feature-panel');
+ const tabs=[...document.querySelectorAll('[data-feature]')];
+ const featureCards={
+  learn:[
+   {n:'01 / POZNEJTE SE',icon:'♡',title:'Profily vašich psů',body:'Uchovej si důležité informace, cíle, povahu i poznámky pro bezpečný trénink.',link:'/profil/',label:'Otevřít profily'},
+   {n:'02 / UČTE SE',icon:'✳',title:'Výcvikové lekce a kvízy',body:'Praktické tipy a krátké lekce, které můžeš přizpůsobit svému psovi.',link:'/lekce/',label:'Prohlédnout lekce'},
+   {n:'03 / ROSTĚTE',icon:'↗',title:'Mise a vlastní postup',body:'Zapisuj si dokončené aktivity a vracej se k tomu, co se vám daří.',link:'/postup/',label:'Zobrazit postup'}
+  ],
+  play:[
+   {n:'01 / HRAJTE SI',icon:'◎',title:'Dog Puller',body:'Zaznamenej trénink, jeho délku a poznámky. Dbej na přestávky a kondici psa.',link:'/dog-puller/',label:'Zapsat trénink'},
+   {n:'02 / SPOLEČNÉ CÍLE',icon:'✦',title:'Mise a výzvy',body:'Rozděl si větší cíl na drobné kroky a označuj si skutečně dokončené aktivity.',link:'/mise/',label:'Otevřít mise'},
+   {n:'03 / PLÁNUJTE',icon:'◷',title:'Připomínky',body:'Připomeň si trénink, péči nebo odpočinek ve chvíli, která ti vyhovuje.',link:'/pripominky/',label:'Nastavit připomínku'}
+  ],
+  track:[
+   {n:'01 / VÝSLEDKY',icon:'↗',title:'Přehled postupu',body:'Na jednom místě uvidíš uložené dokončené aktivity a svůj dosavadní postup.',link:'/postup/',label:'Zobrazit postup'},
+   {n:'02 / VZPOMÍNKY',icon:'▤',title:'Historie tréninků',body:'Vrať se k předchozím lekcím, poznámkám a záznamům Dog Puller.',link:'/historie/',label:'Otevřít historii'},
+   {n:'03 / MALÉ VÝHRY',icon:'✧',title:'Certifikáty',body:'Prohlédni si certifikáty, které jsou skutečně vydané a uložené v tvém účtu.',link:'/certifikaty/',label:'Moje certifikáty'}
+  ]
+ };
+ function renderFeatureCards(key){
+  if(!panel||!featureCards[key])return;
+  panel.classList.add('is-changing');
+  window.setTimeout(()=>{
+   panel.replaceChildren();
+   featureCards[key].forEach(item=>{
+    const article=document.createElement('article');article.className='card feature-card';
+    const number=document.createElement('div');number.className='feature-number';number.textContent=item.n;
+    const icon=document.createElement('div');icon.className='card-icon';icon.setAttribute('aria-hidden','true');icon.textContent=item.icon;
+    const h=document.createElement('h3');h.textContent=item.title;
+    const p=document.createElement('p');p.textContent=item.body;
+    const a=document.createElement('a');a.className='text-link';a.href=item.link;a.append(document.createTextNode(item.label+' '));
+    const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent='↗';a.append(arrow);
+    article.append(number,icon,h,p,a);panel.append(article);
+   });
+   panel.classList.remove('is-changing');
+  },100);
+ }
+ tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  tabs.forEach(t=>{const active=t===tab;t.classList.toggle('active',active);t.setAttribute('aria-selected',String(active))});
+  renderFeatureCards(tab.dataset.feature);
+ }));
+})();
