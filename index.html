@@ -298,6 +298,43 @@ body.signed-in .dashboard-welcome h2{font-size:clamp(2rem,4vw,3rem);letter-spaci
  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
+
+/* Hand-drawn illustrated art direction: no stock photos, soft ink outlines and watercolor washes. */
+.hero-art.handdrawn-hero{min-height:490px;height:clamp(420px,47vw,550px);position:relative;overflow:hidden;border:1px solid #d9e1d1;border-radius:32px;background:linear-gradient(155deg,#f6e7c7 0%,#e4ead9 58%,#d4e0c9 100%);box-shadow:0 20px 54px rgba(31,48,37,.09);isolation:isolate}
+.handdrawn-hero:before{content:"";position:absolute;inset:13px;border:1px dashed #82977b8c;border-radius:24px;transform:rotate(-1deg);pointer-events:none}
+.illustration-paper{position:absolute;inset:0;background-image:radial-gradient(#fff8e8 1px,transparent 1px);background-size:11px 11px;opacity:.4;mix-blend-mode:soft-light}
+.hero-drawing{position:absolute;width:100%;height:100%;inset:0;filter:drop-shadow(0 9px 7px #40523a13)}
+.illustration-label{position:absolute;z-index:3;left:22px;bottom:22px;display:flex;gap:10px;align-items:center;padding:12px 16px;background:#fffdf2eF;border:1px solid #fff;border-radius:15px;box-shadow:0 10px 25px #354c3517;transform:rotate(-2deg)}
+.illustration-label>span:first-child{display:grid;place-items:center;width:35px;height:35px;background:#e9efdf;color:#3e6848;border-radius:12px;font-size:1.2rem}
+.illustration-label strong,.illustration-label small{display:block}.illustration-label strong{font-size:.88rem}.illustration-label small{font-size:.75rem;color:var(--muted);margin-top:1px}
+.drawn-spark{position:absolute;color:#7a956d;font-size:2rem}.spark-one{top:15%;left:12%}.spark-two{right:9%;top:28%;font-size:2.7rem}
+body.signed-in .dashboard{padding-top:32px}
+body.signed-in .dashboard-welcome{padding:28px 0 24px}
+body.signed-in .dashboard-welcome h2{font-size:clamp(2.1rem,4.4vw,3.35rem);letter-spacing:-.065em}
+body.signed-in .dashboard-grid{gap:20px}
+body.signed-in .dash-card{border-radius:24px;padding:26px}
+body.signed-in .dash-hero{min-height:290px;background:linear-gradient(125deg,#294b39 0%,#3e684b 70%,#547a55 100%)}
+.dash-illustration{position:absolute;right:4px;bottom:-9px;width:205px;max-width:42%;opacity:.9;pointer-events:none;transform:rotate(3deg)}
+.dash-illustration svg{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 10px #182e2418)}
+.dash-hero h3,.dash-hero p,.dash-hero .eyebrow,.dash-metrics,.dash-hero .btn{position:relative;z-index:1}
+.dash-hero h3,.dash-hero p{max-width:68%}
+.dash-hero .dash-metrics{max-width:70%}
+.dash-hero .btn{max-width:75%}
+.dash-action{border-radius:15px;min-height:63px;padding:12px}
+.dash-action .action-icon{border-radius:13px;width:42px;height:42px}
+.panel,.dash-card,.feature-card,.training-step,.collectible{box-shadow:0 12px 32px rgba(31,48,37,.045)}
+.section-head{margin-bottom:30px}
+.section-head h2{letter-spacing:-.055em}
+.scenario-visual{background:linear-gradient(145deg,#e7eddc,#f5e2c7);border:1px solid #e3e6d7}
+.scenario-visual:before{content:"";position:absolute;inset:14px;border:1px dashed #8da28580;border-radius:17px;transform:rotate(-2deg)}
+.scenario-visual .scene-emoji{font-size:5.5rem;filter:drop-shadow(0 10px 5px #253e3220)}
+.training-step{position:relative;overflow:hidden}
+.training-step:after{content:"✳";position:absolute;right:15px;top:12px;color:#c4d2b8;font-size:1.7rem}
+.feature-icon{border-radius:16px;background:linear-gradient(145deg,#e8eee1,#f8ead7)}
+.collection-grid .collectible{border-radius:20px}
+@media(max-width:700px){.hero-art.handdrawn-hero{min-height:350px;height:350px;border-radius:23px}.illustration-label{left:13px;bottom:13px;padding:9px 12px}.spark-one{top:11%;left:8%}.spark-two{right:7%;top:23%}.dash-illustration{right:-5px;width:150px;opacity:.55}.dash-hero h3,.dash-hero p{max-width:100%}.dash-hero .dash-metrics{max-width:100%;padding-right:70px}.dash-hero .btn{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.hero-drawing,.illustration-label{animation:none}}
+
 </style>
 </head>
 <body class="signed-out">
@@ -309,18 +346,33 @@ body.signed-in .dashboard-welcome h2{font-size:clamp(2rem,4vw,3rem);letter-spaci
 <main id="home">
 <section class="hero wrap">
 <div><div class="eyebrow"><span class="dot"></span> Malé kroky, velká důvěra</div><h1>Šťastnější pes.<br><em>Klidnější společný život.</em></h1><p>Jedno místo pro život se psem: praktické tréninkové lekce, malé každodenní mise, profil vašeho parťáka a komunita, která sdílí zkušenosti bez tlaku na dokonalost.</p><div class="hero-actions"><button class="btn" data-auth-prompt>Vstoupit do psího světa <span>→</span></button><button class="btn light" data-auth-prompt>Vytvořit účet</button></div><div class="hero-note"><span aria-hidden="true">↗</span> <span>Po přihlášení otevřete svůj osobní přehled, trénink i komunitu.</span></div><div class="hero-proof" aria-label="Co najdete v aplikaci"><span><b>01</b> Trénink a akademie</span><span><b>02</b> Mise a pokroky</span><span><b>03</b> Psí komunita</span></div></div>
-<div class="hero-art official-photo-collage" aria-label="Fotografie ze stránek a aktivit Hodný pes">
-  <figure class="collage-main"><img class="hero-photo" src="https://9b84d29cdf.clvaw-cdnwnd.com/ff365c3c1b236a46519cd9e768d5c51f/200000012-873d9873da/126835472_10218268143078154_1512935076219771558_n.jpg?ph=9b84d29cdf" alt="Fotografie zveřejněná na oficiálním webu Hodný pes" fetchpriority="high"><figcaption>HODNÝ PES · VZTAH NA PRVNÍM MÍSTĚ</figcaption></figure>
-  <figure class="collage-small collage-top"><img src="https://9b84d29cdf.clvaw-cdnwnd.com/ff365c3c1b236a46519cd9e768d5c51f/200000034-8928789288/294149010_596723005392340_8544298203396814547_n.jpg?ph=9b84d29cdf" alt="Další fotografie z oficiálního webu Hodný pes" loading="lazy"></figure>
-  <figure class="collage-small collage-bottom"><img src="https://9b84d29cdf.clvaw-cdnwnd.com/ff365c3c1b236a46519cd9e768d5c51f/200000024-6057160572/281457458_10225507665491826_2979113625454990964_n.jpg?ph=9b84d29cdf" alt="Fotografie ze zkušeností klientů Hodný pes" loading="lazy"></figure>
-  <div class="collage-note"><span class="collage-note-dot"></span><span><strong>Výcvik s respektem</strong><small>Pro každého psa i jeho člověka</small></span></div>
+<div class="hero-art handdrawn-hero" role="img" aria-label="Ručně kreslená ilustrace psa na louce při zlatém večerním světle">
+ <div class="illustration-paper"></div><svg class="hero-drawing" viewBox="0 0 600 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><linearGradient id="skywash" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#f6e5bd"/><stop offset="1" stop-color="#dce8d2"/></linearGradient><linearGradient id="coatwash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8b56e"/><stop offset=".65" stop-color="#bb7944"/><stop offset="1" stop-color="#8d5637"/></linearGradient></defs>
+  <path d="M35 370 Q100 285 180 350 T340 325 T570 340 L600 560 L0 560Z" fill="#b4c49a" stroke="#708c69" stroke-width="3" stroke-linecap="round"/><path d="M0 425 Q140 360 255 425 T600 400 L600 560 L0 560Z" fill="#79966e" stroke="#527655" stroke-width="3"/>
+  <circle cx="470" cy="95" r="51" fill="#efc47c" opacity=".75"/><path d="M40 150 Q80 100 130 145 M70 185 Q105 130 150 170 M430 210 Q485 150 535 205" fill="none" stroke="#fff7df" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+  <path d="M210 435 Q184 373 204 300 Q211 266 251 248 L298 222 Q329 213 356 235 L390 270 Q419 294 422 335 L444 434Z" fill="url(#coatwash)" stroke="#754b34" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M245 268 Q207 242 197 277 Q184 322 230 345 L263 322Z" fill="#8b5439" stroke="#754b34" stroke-width="5"/><path d="M344 248 Q366 208 393 235 Q421 267 393 304 L367 312Z" fill="#9a5e3b" stroke="#754b34" stroke-width="5"/>
+  <path d="M249 267 Q270 234 308 239 Q350 239 369 274 L374 321 Q361 354 328 360 Q284 362 254 331Z" fill="url(#coatwash)" stroke="#754b34" stroke-width="5"/>
+  <path d="M266 248 Q285 229 306 243 L299 279 L270 287Z" fill="#f4e5c7" stroke="#b17c4e" stroke-width="3"/><path d="M319 244 Q340 245 354 265 L338 288 L310 277Z" fill="#f4e5c7" stroke="#b17c4e" stroke-width="3"/>
+  <path d="M278 288 Q290 278 301 290 L300 309 Q289 317 279 307Z" fill="#27372d"/><path d="M330 287 Q342 279 351 291 L349 307 Q338 314 330 305Z" fill="#27372d"/><circle cx="289" cy="294" r="3" fill="#fff9e8"/><circle cx="340" cy="292" r="3" fill="#fff9e8"/>
+  <path d="M300 320 Q315 311 329 320 Q340 334 324 343 Q310 349 296 337Z" fill="#f5e9d1" stroke="#8d5b3c" stroke-width="3"/><path d="M315 322 Q326 319 333 326 Q333 335 322 336 Q313 333 315 322Z" fill="#27372d"/>
+  <path d="M270 337 Q290 358 314 351" fill="none" stroke="#754b34" stroke-width="3" stroke-linecap="round"/><path d="M287 354 Q306 363 326 350" fill="none" stroke="#b84e4b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M255 359 Q306 385 365 351 L380 389 Q319 428 253 391Z" fill="#315a43" stroke="#244b38" stroke-width="4"/><path d="M282 379 l14 -6 14 6 -5 14 -9 8 -9 -8Z" fill="#e7edda"/><circle cx="296" cy="384" r="3" fill="#315a43"/>
+  <path d="M222 414 Q208 456 231 485 L267 485 Q282 477 268 455 L273 410 M377 407 Q398 447 388 484 L422 485 Q436 475 419 448 L417 400" fill="#c58b53" stroke="#754b34" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M210 485 Q237 472 269 485 L272 500 Q239 510 211 500Z M383 485 Q408 474 427 485 L433 500 Q404 510 383 500Z" fill="#f3e3c4" stroke="#754b34" stroke-width="4"/>
+  <path d="M210 300 Q190 328 204 353 M229 277 Q222 302 235 321 M363 278 Q385 298 378 319 M365 365 Q382 381 389 401" fill="none" stroke="#f8d79c" stroke-width="5" stroke-linecap="round"/>
+  <g fill="none" stroke="#f7f0d9" stroke-width="3" stroke-linecap="round"><path d="M100 450 l-8 -26 m8 26 l15 -20 m-15 20 l-20 -4"/><path d="M487 455 l-8 -27 m8 27 l16 -20 m-16 20 l-20 -4"/><path d="M150 390 l0 -22 m0 22 l-12 -13 m12 13 l12 -15"/></g>
+  <g fill="#e7b17c" stroke="#6d8b62" stroke-width="2"><circle cx="99" cy="420" r="7"/><circle cx="110" cy="429" r="6"/><circle cx="89" cy="432" r="6"/><circle cx="494" cy="425" r="7"/><circle cx="506" cy="434" r="6"/><circle cx="484" cy="438" r="6"/></g>
+  <path d="M44 84 Q66 65 83 84 M49 95 Q65 80 78 95 M510 282 Q531 260 550 282" fill="none" stroke="#6d8768" stroke-width="3" stroke-linecap="round"/>
+ </svg><div class="illustration-label"><span>✳</span><span><strong>Společně rosteme</strong><small>Malé kroky. Velká důvěra.</small></span></div><span class="drawn-spark spark-one">✳</span><span class="drawn-spark spark-two">✧</span>
 </div>
 </section>
 
 <section class="dashboard wrap" id="dashboard">
  <div class="dashboard-welcome"><div><div class="eyebrow"><span class="dot"></span> Váš prostor pro společný růst</div><h2 id="dashboard-greeting">Dobrý den, pejskaři.</h2><p id="dashboard-subtitle">Začněte malým krokem. Váš pokrok se počítá — i když máte dnes jen pět minut.</p></div><span class="dash-badge" id="cloud-badge">Režim návštěvníka</span></div>
  <div class="dashboard-grid">
-  <article class="dash-card dash-hero"><div class="eyebrow" style="color:#dce8d6">Váš dnešní přehled</div><h3 id="dash-dog-title">Každý den můžete být lepší tým.</h3><p id="dash-dog-copy">Vytvořte profil psa a uložte si společné úspěchy. Přihlášení není nutné k vyzkoušení aktivit.</p><div class="dash-metrics"><div class="dash-metric"><strong id="dash-points">0</strong><span>bodů pohody</span></div><div class="dash-metric"><strong id="dash-missions">0/3</strong><span>dnešní mise</span></div><div class="dash-metric"><strong id="dash-activities">0</strong><span>aktivit</span></div></div><button class="btn" data-go="missions">Pokračovat v dnešní výzvě →</button></article>
+  <article class="dash-card dash-hero"><div class="dash-illustration" aria-hidden="true"><svg viewBox="0 0 240 210" xmlns="http://www.w3.org/2000/svg"><path d="M15 185 Q35 135 75 160 T145 155 T225 165 L240 210 L0 210Z" fill="#9bb78c" opacity=".7"/><path d="M65 179 Q45 136 65 96 Q74 73 98 74 Q120 63 137 85 Q157 100 153 130 L166 179Z" fill="#dca56b" stroke="#f8e7c8" stroke-width="4" stroke-linejoin="round"/><path d="M82 91 Q57 64 50 94 Q45 119 78 128Z" fill="#89563b" stroke="#f8e7c8" stroke-width="3"/><path d="M126 84 Q145 63 157 88 Q164 110 141 124Z" fill="#89563b" stroke="#f8e7c8" stroke-width="3"/><path d="M82 93 Q94 78 112 87 Q135 92 137 113 L128 139 Q109 154 87 136Z" fill="#e7bc82" stroke="#f8e7c8" stroke-width="3"/><circle cx="94" cy="111" r="4" fill="#24372b"/><circle cx="123" cy="111" r="4" fill="#24372b"/><path d="M101 126 Q109 119 117 126 Q116 135 109 135Z" fill="#24372b"/><path d="M90 142 Q108 152 127 139 L135 158 Q109 171 84 158Z" fill="#315b43" stroke="#e6eddc" stroke-width="3"/><path d="M90 176 l-5 20 M145 174 l5 22" stroke="#f8e7c8" stroke-width="9" stroke-linecap="round"/><path d="M26 155 l-5 -18 m5 18 l12 -13 M193 151 l-3 -20 m3 20 l12 -12" stroke="#e3d4a9" stroke-width="3" stroke-linecap="round"/><path d="M181 62 l5 -11 5 11 11 5 -11 5 -5 11 -5 -11 -11 -5Z" fill="#e6b16d"/><circle cx="47" cy="64" r="4" fill="#e6b16d"/></svg></div><div class="eyebrow" style="color:#dce8d6">Váš dnešní přehled</div><h3 id="dash-dog-title">Každý den můžete být lepší tým.</h3><p id="dash-dog-copy">Vytvořte profil psa a uložte si společné úspěchy. Přihlášení není nutné k vyzkoušení aktivit.</p><div class="dash-metrics"><div class="dash-metric"><strong id="dash-points">0</strong><span>bodů pohody</span></div><div class="dash-metric"><strong id="dash-missions">0/3</strong><span>dnešní mise</span></div><div class="dash-metric"><strong id="dash-activities">0</strong><span>aktivit</span></div></div><button class="btn" data-go="missions">Pokračovat v dnešní výzvě →</button></article>
   <article class="dash-card"><h3>Rychlý start</h3><p>Vyberte, co dnes vašemu parťákovi sedne.</p><div class="dash-actions">
    <button class="dash-action" data-go="walk"><span class="action-icon">↗</span><span><strong>Psí situace</strong><small>Rozhodování v praxi</small></span></button>
    <button class="dash-action" data-go="profile"><span class="action-icon">○</span><span><strong>Profil psa</strong><small>Vytvořte kartičku</small></span></button>
