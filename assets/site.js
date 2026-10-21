@@ -192,3 +192,75 @@ refreshAuth().then(()=>{updateNav();if(page==='auth'&&session&&!location.hash.in
   renderFeatureCards(tab.dataset.feature);
  }));
 })();
+
+
+/* Community and live breed catalogue use only existing, RLS-protected Supabase tables. */
+(()=>{
+ const page=document.body.dataset.page;
+ if(page==='community'){
+  const form=document.querySelector('#community-form'),feed=document.querySelector('#community-feed'),input=document.querySelector('#community-body');
+  const statusEl=document.querySelector('#community-status'),count=document.querySelector('#community-count');
+  const setStatus=(message,type='')=>{if(statusEl){statusEl.textContent=message;statusEl.className='status'+(type?' '+type)}};
+  input?.addEventListener('input',()=>{if(count)count.textContent=String(input.value.length)});
+  const render=rows=>{
+   if(!feed)return;feed.replaceChildren();
+   if(!rows?.length){const p=document.createElement('p');p.className='muted';p.textContent='Zatím tu nejsou žádné příspěvky. Pokud chceš, můžeš začít první otázkou nebo zkušeností.';feed.append(p);return}
+   rows.forEach(row=>{
+    const article=document.createElement('article');article.className='community-post';
+    const head=document.createElement('div');head.className='community-post-head';
+    const avatar=document.createElement('span');avatar.className='community-avatar';avatar.setAttribute('aria-hidden','true');avatar.textContent='🐾';
+    const who=document.createElement('div');const name=document.createElement('strong');name.textContent=row.display_name||'Člen komunity';const meta=document.createElement('small');meta.textContent=[row.dog_name?'Pes: '+row.dog_name:'',row.created_at?new Date(row.created_at).toLocaleString('cs-CZ',{dateStyle:'medium',timeStyle:'short'}):''].filter(Boolean).join(' · ');who.append(name,meta);head.append(avatar,who);
+    const body=document.createElement('p');body.className='community-post-body';body.textContent=row.body||'';
+    article.append(head,body);
+    if(session?.user?.id===row.user_id){const remove=document.createElement('button');remove.type='button';remove.className='text-link community-delete';remove.textContent='Smazat můj příspěvek';remove.addEventListener('click',async()=>{if(!confirm('Opravdu chceš smazat tento příspěvek?'))return;const {error}=await db.from('community_posts').delete().eq('id',row.id).eq('user_id',session.user.id);if(error){setStatus('Příspěvek se nepodařilo smazat: '+error.message,'error');return}setStatus('Tvůj příspěvek byl smazán.','success');await load()});article.append(remove)}
+    feed.append(article);
+   });
+  };
+  async function load(){
+   if(!feed)return;feed.setAttribute('aria-busy','true');
+   const {data,error}=await db.from('community_posts').select('id,user_id,display_name,dog_name,body,created_at').order('created_at',{ascending:false}).limit(50);
+   feed.removeAttribute('aria-busy');
+   if(error){feed.replaceChildren();const p=document.createElement('p');p.className='status error';p.textContent='Komunitní příspěvky se nepodařilo načíst. Zkontroluj připojení a oprávnění.';feed.append(p);return}
+   render(data||[]);
+  }
+  form?.addEventListener('submit',async event=>{
+   event.preventDefault();
+   if(!session?.user?.id){setStatus('Pro zveřejnění se nejprve přihlas.','error');return}
+   const body=String(input?.value||'').trim(),dogName=String(document.querySelector('#community-dog')?.value||'').trim();
+   if(!body||body.length>500){setStatus('Text musí mít 1 až 500 znaků.','error');return}
+   const submit=form.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
+   const displayName=String(session.user.user_metadata?.full_name||session.user.user_metadata?.name||'Člen komunity').slice(0,120);
+   const {error}=await db.from('community_posts').insert({user_id:session.user.id,display_name:displayName,dog_name:dogName.slice(0,80),body});
+   if(submit)submit.disabled=false;
+   if(error){setStatus('Příspěvek se nepodařilo uložit: '+error.message,'error');return}
+   form.reset();if(count)count.textContent='0';setStatus('Příspěvek byl zveřejněn.','success');await load();
+  });
+  document.querySelector('#community-refresh')?.addEventListener('click',load);
+  load();
+ }
+ if(page==='breeds'){
+  const search=document.querySelector('#breed-search'),results=document.querySelector('#breed-search-results'),count=document.querySelector('#breed-search-count');
+  let breeds=[],errorMessage='';
+  const render=()=>{
+   if(!results)return;const q=String(search?.value||'').trim().toLocaleLowerCase('cs-CZ');
+   const filtered=breeds.filter(b=>[b.name,b.registry,b.group_name,b.recognition,...(b.aliases||[])].filter(Boolean).join(' ').toLocaleLowerCase('cs-CZ').includes(q));
+   results.replaceChildren();
+   if(count)count.textContent=errorMessage?errorMessage:('Zobrazeno '+filtered.length+' z '+breeds.length+' položek');
+   if(!filtered.length){const p=document.createElement('p');p.className='muted';p.textContent=errorMessage?'Katalog teď není dostupný. Zkus to prosím později.':'Nic jsme nenašli. Zkus kratší nebo jinak napsaný název.';results.append(p);return}
+   filtered.slice(0,100).forEach(b=>{
+    const card=document.createElement('article');card.className='breed-result';
+    const title=document.createElement('h3');title.textContent=b.name;
+    const detail=document.createElement('p');detail.textContent=[b.group_name,b.registry,b.recognition].filter(Boolean).join(' · ')||'Podrobnosti nejsou vyplněné.';
+    const badge=document.createElement('span');badge.className='breed-badge';badge.textContent=b.verified?'Zdroj ověřen':'Zdroj zatím neověřen';
+    card.append(title,detail,badge);
+    if(b.source_url&&/^https?:\/\//i.test(b.source_url)){const a=document.createElement('a');a.href=b.source_url;a.target='_blank';a.rel='noopener noreferrer';a.className='text-link';a.textContent='Otevřít zdroj ↗';card.append(a)}
+    results.append(card);
+   });
+  };
+  search?.addEventListener('input',render);
+  db.from('breed_catalog').select('name,aliases,registry,recognition,group_name,source_url,verified').eq('active',true).order('name').limit(2000).then(({data,error})=>{
+   if(error){errorMessage='Katalog se nepodařilo načíst.';breeds=[]}else{breeds=data||[]}
+   render();
+  });
+ }
+})();
