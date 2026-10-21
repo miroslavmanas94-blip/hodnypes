@@ -4,7 +4,8 @@
   "version": "1.0.2",
   "description": "Statický web Hodný pes pro Cloudflare Pages",
   "scripts": {
-    "build": "echo \"Hodny pes: static build OK\"",
-    "deploy": "wrangler pages deploy . --project-name=hodnypes"
+    "build": "node scripts/check.mjs",
+    "deploy": "wrangler pages deploy . --project-name=hodnypes",
+    "test": "node scripts/check.mjs"
   }
 }
