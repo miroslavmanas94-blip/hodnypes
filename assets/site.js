@@ -3,6 +3,8 @@ const URL='https://krgtpruozlhygziwlwbt.supabase.co';
 const KEY='sb_publishable_IUbDhP7T_2m7XiAKcSg0Ng_v2F4A97e';
 const db=createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
 const $=s=>document.querySelector(s); const all=s=>[...document.querySelectorAll(s)];
+if(!document.querySelector('link[rel="manifest"]')){const manifestLink=document.createElement('link');manifestLink.rel='manifest';manifestLink.href='/manifest.webmanifest';document.head.append(manifestLink)}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}))}
 /* Accessible theme switch, compact mobile menu and mobile bottom navigation */
 function applyTheme(theme){
  document.documentElement.dataset.theme=theme;

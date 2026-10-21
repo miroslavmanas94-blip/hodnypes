@@ -1,0 +1,24 @@
+{
+  "name": "Hodný pes — společně v pohodě",
+  "short_name": "Hodný pes",
+  "description": "Osobní akademie, profily psů a výcvikové aktivity.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f8ff",
+  "theme_color": "#2456c7",
+  "lang": "cs",
+  "categories": [
+    "education",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
