@@ -200,7 +200,7 @@ refreshAuth().then(()=>{updateNav();if(page==='auth'&&session&&!location.hash.in
  if(page==='community'){
   const form=document.querySelector('#community-form'),feed=document.querySelector('#community-feed'),input=document.querySelector('#community-body');
   const statusEl=document.querySelector('#community-status'),count=document.querySelector('#community-count');
-  const setStatus=(message,type='')=>{if(statusEl){statusEl.textContent=message;statusEl.className='status'+(type?' '+type)}};
+  const setStatus=(message,type='')=>{if(statusEl){statusEl.textContent=message;statusEl.className='status'+(type?' '+type:'')}};
   input?.addEventListener('input',()=>{if(count)count.textContent=String(input.value.length)});
   const render=rows=>{
    if(!feed)return;feed.replaceChildren();
