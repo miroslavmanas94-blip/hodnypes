@@ -1,9 +1,10 @@
 {
   "name": "hodny-pes",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Statický web Hodný pes pro Cloudflare Pages",
   "scripts": {
-    "build": "echo \"Hodny pes: static build OK\""
+    "build": "echo \"Hodny pes: static build OK\"",
+    "deploy": "wrangler pages deploy . --project-name=hodnypes"
   }
 }
