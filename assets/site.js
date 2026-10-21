@@ -2,7 +2,38 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const URL='https://krgtpruozlhygziwlwbt.supabase.co';
 const KEY='sb_publishable_IUbDhP7T_2m7XiAKcSg0Ng_v2F4A97e';
 const db=createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const $=s=>document.querySelector(s), $=s=>[...document.querySelectorAll(s)];
+/* Accessible theme switch, compact mobile menu and mobile bottom navigation */
+function applyTheme(theme){
+ document.documentElement.dataset.theme=theme;
+ const button=$('#theme-toggle');
+ if(button){button.textContent=theme==='dark'?'Světlý režim':'Tmavý režim';button.setAttribute('aria-pressed',String(theme==='dark'))}
+}
+const savedTheme=(()=>{try{return localStorage.getItem('hp-theme')}catch{return null}})();
+applyTheme(savedTheme==='dark'?'dark':'light');
+const navLinks=$('.links');
+if(navLinks&&!$('#theme-toggle')){
+ const themeButton=document.createElement('button');themeButton.type='button';themeButton.id='theme-toggle';themeButton.className='theme-toggle';themeButton.textContent='Tmavý režim';themeButton.setAttribute('aria-label','Přepnout světlý nebo tmavý vzhled');navLinks.append(themeButton);
+ themeButton.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('hp-theme',next)}catch{}applyTheme(next)});
+}
+const navContainer=$('.nav'),header=$('.top');
+if(navContainer&&!$('#menu-toggle')){
+ const menuButton=document.createElement('button');menuButton.type='button';menuButton.id='menu-toggle';menuButton.className='menu-toggle';menuButton.textContent='Menu';menuButton.setAttribute('aria-controls','site-links');menuButton.setAttribute('aria-expanded','false');
+ const links=$('.links');if(links)links.id='site-links';
+ const brand=$('.brand');if(brand)brand.after(menuButton);else navContainer.prepend(menuButton);
+ menuButton.addEventListener('click',()=>{const open=header?.classList.toggle('nav-open')||false;menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'Zavřít':'Menu'});
+ navLinks?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{header?.classList.remove('nav-open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='Menu'}));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){header?.classList.remove('nav-open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='Menu'}});
+}
+if(!$('.mobile-dock')){
+ const dock=document.createElement('nav');dock.className='mobile-dock';dock.setAttribute('aria-label','Rychlá navigace');
+ const items=[['/','Domů'],['/profil/','Psi'],['/akademie/','Akademie'],['/akce/','Akce'],['/ucet/','Účet']];
+ const current=location.pathname;
+ items.forEach(([href,label])=>{const a=document.createElement('a');a.href=href;const marker=document.createElement('span');marker.setAttribute('aria-hidden','true');const text=document.createElement('span');text.textContent=label;text.style.cssText='width:auto;height:auto;background:none;opacity:1';a.append(marker,text);if(current===href||(href!=='/'&&current.startsWith(href)))a.setAttribute('aria-current','page');dock.append(a)});
+ document.body.append(dock);
+}
+const heroDog=$('.hero-dog');
+if(heroDog)heroDog.innerHTML='<svg viewBox="0 0 220 220" role="img" aria-label="Ilustrace psa" xmlns="http://www.w3.org/2000/svg"><path d="M57 55 25 26Q11 16 13 42l8 60q-2 39 24 61 22 18 65 18t65-18q26-22 24-61l8-60q2-26-12-16l-32 29q-24-14-53-14T57 55Z" fill="#2456c7"/><path d="M73 98q-11-12-22 0-9 12 2 23 10 9 21-1M169 98q-11-12-22 0-9 12 2 23 10 9 21-1" fill="#f7faff"/><ellipse cx="110" cy="139" rx="42" ry="31" fill="#f7faff"/><ellipse cx="110" cy="126" rx="15" ry="11" fill="#18243a"/><path d="M110 137q-2 16-17 16m17-16q2 16 17 16" stroke="#18243a" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M88 72q10-7 20 0m14 0q10-7 20 0" stroke="#f7faff" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M78 178q32 16 64 0" stroke="#f4bd50" stroke-width="8" stroke-linecap="round" fill="none"/></svg>';
 let session=null,mode='login';
 function status(msg,type=''){const el=$('#status');if(el){el.textContent=msg;el.className='status'+(type?' '+type:'')}}
 async function syncCookie(s){if(!s?.access_token){await fetch('/api/logout',{method:'POST',credentials:'same-origin'}).catch(()=>{});return}const r=await fetch('/api/session',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({access_token:s.access_token,expires_in:s.expires_in||3600})});if(!r.ok)console.warn('Server session sync failed',await r.text())}
