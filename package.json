@@ -1,0 +1,9 @@
+{
+  "name": "hodny-pes",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Statický web Hodný pes pro Cloudflare Pages",
+  "scripts": {
+    "build": "node -e \"console.log('Hodný pes: statický web, build krok není potřeba.')\""
+  }
+}
