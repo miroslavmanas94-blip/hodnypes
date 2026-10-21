@@ -35,7 +35,7 @@ body{background:radial-gradient(ellipse at 85% 0%,#e8f0ff 0,transparent 36%),var
 .auth-tabs button.active{background:#eaf1ff;border-color:#9bb8f5;color:#214eb6}
 .google{background:var(--paper);color:var(--ink);border-color:var(--line)}
 .pill{background:#eaf1ff}
-.mobile-dock,.menu-toggle,.theme-toggle{display:none}
+.mobile-dock,.menu-toggle{display:none}.theme-toggle{display:inline-flex}
 .mobile-dock a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:750;display:grid;justify-items:center;gap:4px;padding:9px 3px;border-radius:13px}
 .mobile-dock a span{display:block;width:25px;height:3px;border-radius:4px;background:currentColor;opacity:.45}
 .mobile-dock a[aria-current="page"]{background:var(--pale);color:#2456c7}

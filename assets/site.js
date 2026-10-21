@@ -15,6 +15,7 @@ const navLinks=$('.links');
 if(navLinks&&!$('#theme-toggle')){
  const themeButton=document.createElement('button');themeButton.type='button';themeButton.id='theme-toggle';themeButton.className='theme-toggle';themeButton.textContent='Tmavý režim';themeButton.setAttribute('aria-label','Přepnout světlý nebo tmavý vzhled');navLinks.append(themeButton);
  themeButton.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('hp-theme',next)}catch{}applyTheme(next)});
+ applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
 }
 const navContainer=$('.nav'),header=$('.top');
 if(navContainer&&!$('#menu-toggle')){
