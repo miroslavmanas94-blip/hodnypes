@@ -22,7 +22,7 @@ const middleware = readFileSync('functions/_middleware.js', 'utf8')
   .replace('export async function onRequest', 'async function onRequest');
 const browser = readFileSync('assets/site.js', 'utf8')
   .split('\n').slice(1).join('\n');
-const platform = readFileSync('assets/platform.js', 'utf8').replace(/^import .*?;\\s*/s, '');
+const platform = readFileSync('assets/platform.js', 'utf8').replace(/^import .*?;\s*/s, '');
 const session = readFileSync('functions/api/session.js', 'utf8')
   .replace('export async function onRequestPost', 'async function onRequestPost');
 const logout = readFileSync('functions/api/logout.js', 'utf8')
