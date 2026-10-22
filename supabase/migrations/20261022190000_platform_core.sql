@@ -223,7 +223,7 @@ create policy hp_groups_select on public.hp_groups for select to authenticated u
 create policy hp_groups_insert on public.hp_groups for insert to authenticated with check(owner_id=auth.uid());
 create policy hp_groups_update on public.hp_groups for update to authenticated using(owner_id=auth.uid()) with check(owner_id=auth.uid());
 create policy hp_groups_delete on public.hp_groups for delete to authenticated using(owner_id=auth.uid());
-create policy hp_group_members_select on public.hp_group_members for select to authenticated using (user_id=auth.uid() or exists(select 1 from public.hp_groups g where g.id=group_id and g.visibility='public'));
+create policy hp_group_members_select on public.hp_group_members for select to authenticated using (user_id=auth.uid());
 create policy hp_group_members_insert on public.hp_group_members for insert to authenticated with check(user_id=auth.uid());
 create policy hp_group_members_delete on public.hp_group_members for delete to authenticated using(user_id=auth.uid() or exists(select 1 from public.hp_groups g where g.id=group_id and g.owner_id=auth.uid()));
 create policy hp_events_select on public.hp_events for select to authenticated using(status='published' or owner_id=auth.uid());
