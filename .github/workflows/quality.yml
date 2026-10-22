@@ -1,0 +1,38 @@
+name: Hodný pes — quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke-tests:
+    name: Syntax, routes, privacy and storage checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax and required routes
+        run: npm test
+      - name: Check for accidentally committed secrets
+        shell: bash
+        run: |
+          if grep -RInE --exclude-dir=.git --exclude='*.md' --exclude='*.map' '(service_role|SUPABASE_SERVICE_ROLE_KEY|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----)' .; then
+            echo "::error::Potential secret or private key found in repository."
+            exit 1
+          fi
+          echo "No common service-role key markers or private keys detected."
