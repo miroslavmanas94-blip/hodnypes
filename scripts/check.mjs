@@ -17,6 +17,7 @@ const requiredFiles = [
   'supabase/migrations/20261022210000_event_roles_and_permissions.sql',
   'supabase/migrations/20261022211000_manual_point_awards.sql',
   'supabase/migrations/20261022212000_admin_course_read.sql',
+  'supabase/migrations/20261022213000_public_member_profiles.sql',
   'supabase/migrations/20261022202000_direct_messages.sql',
   'supabase/migrations/20261022201000_admin_review_access.sql',
   'supabase/migrations/20261022200000_admin_publishing_policies.sql',
