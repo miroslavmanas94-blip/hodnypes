@@ -117,13 +117,16 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
     panel.innerHTML=({community:tabCommunity,missions:tabMissions,diary:tabDiary,events:tabEvents,academy:tabAcademy,articles:tabArticles,groups:tabGroups,notifications:tabNotifications,settings:tabSettings}[state.tab]||tabCommunity)();
     try{
       if(state.tab==='community'){ $('#hp-post-form').addEventListener('submit',savePost);await loadPosts()}
-      if(state.tab==='messages')await loadMessages();\n      if(state.tab==='missions')await loadMissions();
+      if(state.tab==='messages')await loadMessages();
+      if(state.tab==='missions')await loadMissions();
       if(state.tab==='diary'){ $('#hp-diary-form').addEventListener('submit',saveDiary);await loadDiary()}
       if(state.tab==='events'){ $('#hp-event-form').addEventListener('submit',saveEvent);await loadEvents()}
-      if(state.tab==='academy')await loadCourses();\n      if(state.tab==='breeds'){await loadBreeds()}
+      if(state.tab==='academy')await loadCourses();
+      if(state.tab==='breeds'){await loadBreeds()}
       if(state.tab==='articles'){ $('#hp-article-form').addEventListener('submit',saveArticle);await loadArticles()}
       if(state.tab==='groups'){ $('#hp-group-form').addEventListener('submit',saveGroup);await loadGroups()}
-      if(state.tab==='notifications')await loadNotifications();\n      if(state.tab==='admin')await loadAdmin();
+      if(state.tab==='notifications')await loadNotifications();
+      if(state.tab==='admin')await loadAdmin();
       if(state.tab==='settings')await loadSettings();
     }catch(e){msg(e.message||'Nepodařilo se načíst obsah.','error')}
   }
