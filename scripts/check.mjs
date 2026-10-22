@@ -18,8 +18,8 @@ if(!mw.includes('src="/assets/platform.js"')||mw.includes('id="workspace"')){con
 if(!site.includes("async function syncServerSession(session)")||!site.includes("fetch('/api/session'")||!site.includes("fetch('/api/logout'")){console.error('Browser and server auth sessions are not synchronized');process.exitCode=1}
 const sessionApi=read('functions/api/session.js'),logoutApi=read('functions/api/logout.js');
 if(!sessionApi.includes("set-cookie")||!sessionApi.includes("/auth/v1/user")||!logoutApi.includes("Max-Age=0")){console.error('Secure session cookie endpoints are incomplete');process.exitCode=1}
-const platform=read('assets/platform.js');
-if(!platform.includes("from('hp_courses').select('id,title,summary,category,difficulty,language,is_paid')")||!platform.includes("from('dog_profiles')")){console.error('Member features are not aligned with required data tables');process.exitCode=1}
+const platformSource=read('assets/platform.js');
+if(!platformSource.includes("from('hp_courses').select('id,title,summary,category,difficulty,language,is_paid')")||!platformSource.includes("from('dog_profiles')")){console.error('Member features are not aligned with required data tables');process.exitCode=1}
 
 if(!html.includes('/assets/site.css')||!html.includes('/assets/site.js')){console.error('Static fallback missing site assets');process.exitCode=1}
 if(process.exitCode)process.exit(process.exitCode);console.log('✓ Routes, authentication, privacy and database checks passed');
