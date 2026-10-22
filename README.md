@@ -56,3 +56,37 @@ Projekt Cloudflare Pages hodnypes je propojený s repozitářem miroslavmanas94-
 - Body a mise jsou motivační funkce aplikace, ne oficiální certifikace.
 - Fotografie z původního generátoru kartiček nebyly převáděny do nového webu; původní soubory a data zůstávají v repozitáři/databázi.
 - Po úpravě je nutné ověřit skutečné nasazení a interakční testy v prohlížeči. Samotný úspěšný build neprokazuje funkčnost OAuth.
+
+## Platform modules added
+
+The homepage loads `assets/platform.js` and the member workspace after sign-in. The workspace contains:
+- community feed with posts, reactions, comments and reporting;
+- private direct messages with participant-only row-level security;
+- training diary, missions and completion tracking;
+- events/meetups with capacity-aware registration and waitlist promotion;
+- academy courses and lessons, article proposals and admin approval;
+- searchable breed catalogue, groups, notifications and account preferences;
+- role-gated moderation and course authoring.
+
+Core database migrations are stored in `supabase/migrations/` and have been applied to the connected Supabase project. The private `dog-media` bucket only accepts JPG/PNG/WebP up to 15 MB and only the file owner can access their files. The event waitlist trigger functions have direct RPC execution revoked.
+
+### Initial administrator setup
+
+For security, the application does **not** automatically make the first registrant an administrator. After creating the intended owner account, find that account's UUID in Supabase Authentication and run the following SQL in the Supabase SQL editor, replacing the placeholder with the exact UUID:
+
+```sql
+insert into public.user_roles (user_id, role)
+values ('YOUR_AUTH_USER_UUID', 'admin')
+on conflict (user_id) do update set role = excluded.role;
+```
+
+Only administrators can approve articles, moderate reports, create official courses, and manually award points. Member accounts can organize ordinary meetups; official competitions, courses, camps and seminars require an assigned trainer, event-organizer or administrator role.
+
+### Current scope and remaining configuration
+
+- Email sending is intentionally inactive.
+- Browser push notifications and daily/weekly digest delivery are not activated; in-app notifications and preference storage are available.
+- Full bilingual editorial translation still depends on supplying approved English content. The interface language selector is present, but not every editorial string is translated yet.
+- The breed catalogue currently contains only the records already in the database; it must be expanded and verified before it can be described as a complete international catalogue.
+- Enable leaked-password protection in Supabase Authentication settings when the project dashboard allows it.
+- No map, geolocation or location-sharing features are part of this project.
