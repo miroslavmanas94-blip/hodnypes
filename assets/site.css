@@ -521,3 +521,16 @@ body{background:radial-gradient(ellipse at 88% 7%,#edf0df 0,transparent 31%),var
 @media(max-width:850px){.hp-auth-page{padding-top:32px}.hp-auth-layout{grid-template-columns:1fr;max-width:600px;gap:30px}.hp-auth-story h1{font-size:clamp(2.65rem,8vw,4rem)}.hp-auth-photo{aspect-ratio:16/7}.hp-auth-form-wrap{padding:clamp(22px,5vw,34px)}}
 @media(max-width:560px){.hp-auth-page{padding:24px 0 42px}.hp-auth-layout{gap:24px}.hp-auth-story h1{font-size:2.8rem}.hp-auth-story>p{font-size:1rem}.hp-auth-photo{aspect-ratio:4/3;border-radius:22px}.hp-auth-photo-note{left:12px;right:12px;bottom:12px}.hp-auth-form-wrap{padding:20px;border-radius:24px}.hp-auth-form-head{margin-bottom:16px}}
 @media(prefers-reduced-motion:reduce){.hp-auth-photo img{transition:none}}
+
+
+/* Public pre-login homepage: polished responsive destination cards */
+.hp-hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px}
+.hp-hub-card{display:flex;align-items:center;gap:16px;min-width:0;padding:22px 24px;background:var(--paper,#fffefa);border:1px solid var(--line,#e2e6dc);border-radius:20px;text-decoration:none;box-shadow:0 12px 34px rgba(36,59,43,.045);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.hp-hub-card:hover{transform:translateY(-3px);border-color:#b8cbb9;box-shadow:0 18px 42px rgba(36,59,43,.09)}
+.hp-hub-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:15px;background:#edf2e9;color:#2f5b43;font-size:24px}
+.hp-hub-card-copy{display:grid;gap:4px;flex:1;min-width:0}
+.hp-hub-card-copy strong{font-size:16px;line-height:1.35;color:var(--ink,#24342b)}
+.hp-hub-card-copy small{font-size:13px;line-height:1.5;color:var(--muted,#68776d)}
+.hp-hub-arrow{font-size:20px;color:#557d5c}
+@media(max-width:680px){.hp-hub-grid{grid-template-columns:1fr;gap:10px}.hp-hub-card{padding:17px;border-radius:16px}.hp-hub-icon{flex-basis:42px;width:42px;height:42px;border-radius:13px}}
+@media(prefers-reduced-motion:reduce){.hp-hub-card{transition:none}.hp-hub-card:hover{transform:none}}
