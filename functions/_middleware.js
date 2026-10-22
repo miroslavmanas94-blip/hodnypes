@@ -86,61 +86,6 @@ function render(path,p){const isHome=path==='/';let body='';if(p.kind==='home'){
  </div>
 </section>
 `}
-<section class="hp-home-hero" id="top">
- <div class="wrap hp-hero-grid">
-  <div class="hp-hero-copy">
-   <div class="hp-eyebrow"><span></span> HODNÝ PES · NOVINKY A SPOLEČNÝ ŽIVOT</div>
-   <h1>Všechno důležité pro <em>život se psem.</em></h1>
-   <p>Novinky, akce a osobní akademie na jednom místě. Objev, co se děje, a pokračuj přesně tam, kde to pro vás dva dává smysl.</p>
-   <div class="hp-hero-actions"><a class="btn" href="#novinky">Prohlédnout novinky <span aria-hidden="true">↘</span></a><a class="btn light" href="#rozcestnik">Otevřít rozcestník</a></div>
-   <div class="hp-trust-line"><span>✳</span> Skutečné aktuality a bezpečný osobní účet</div>
-  </div>
-  <a class="hp-feature-story" href="/akce/" aria-label="Otevřít akce a závody">
-   <img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=1200&q=88" alt="Pes při společném pobytu venku" fetchpriority="high">
-   <span class="hp-image-shade"></span>
-   <span class="hp-story-tag">ZE SVĚTA HODNÉHO PSA</span>
-   <span class="hp-story-copy"><small>Společné chvíle začínají tady</small><strong>Novinky, setkání<br>a další psí dobrodružství.</strong><span class="hp-story-link">Prozkoumat akce <b>↗</b></span></span>
-   <span class="hp-story-index">01 <i>/ 03</i></span>
-  </a>
- </div>
-</section>
-<section class="hp-news-section" id="novinky">
- <div class="wrap">
-  <div class="hp-section-head"><div><div class="hp-eyebrow"><span></span> CO JE NOVÉHO</div><h2>Novinky a aktuality</h2><p>Aktuální informace a zveřejněné akce. Nové položky se zobrazí po publikování správcem.</p></div><a class="hp-text-link" href="/akce/">Všechny akce <span>↗</span></a></div>
-  <div id="public-events" class="hp-news-grid" aria-live="polite"><article class="hp-news-loading"><span class="hp-loader"></span><p>Načítáme zveřejněné novinky…</p></article></div>
-  <div class="hp-news-foot"><span class="hp-live-dot"></span> Zobrazeny jsou pouze zveřejněné položky <span class="hp-foot-sep">·</span> <a href="https://hodnypes.cz/" target="_blank" rel="noopener noreferrer">Oficiální web Hodného psa ↗</a></div>
- </div>
-</section>
-<section class="hp-hub-section" id="rozcestnik">
- <div class="wrap">
-  <div class="hp-section-head"><div><div class="hp-eyebrow"><span></span> TVŮJ DALŠÍ KROK</div><h2>Rozcestník Hodný pes</h2><p>Vyber si, kam chceš pokračovat. Veřejné informace i osobní akademie jsou přehledně vedle sebe.</p></div><span class="hp-hub-pill">Vše na jednom místě <b>✳</b></span></div>
-  <div class="hp-hub-group"><div class="hp-group-title"><span class="hp-group-number">01</span><div><h3>Objevuj a plánuj</h3><p>Veřejné informace, setkání a rezervace</p></div></div>
-   <div class="hp-tile-grid hp-public-tiles">
-    <a class="hp-tile hp-tile-wide" href="/akce/"><span class="hp-tile-image"><img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&q=82" alt="" loading="lazy"></span><span class="hp-tile-content"><span class="hp-tile-icon">↗</span><strong>Akce a závody</strong><small>Termíny, setkání a dění kolem psů</small><b class="hp-tile-arrow">↗</b></span></a>
-    <a class="hp-tile" href="/o-nas/"><span class="hp-tile-icon hp-icon-cream">✳</span><strong>O Hodném psovi</strong><small>Jak to celé funguje</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/vycvik/"><span class="hp-tile-icon hp-icon-peach">◎</span><strong>Výcvikové lekce</strong><small>Možnosti a informace o výcviku</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/rezervace/"><span class="hp-tile-icon hp-icon-sage">▦</span><strong>Rezervace lekcí</strong><small>Domluv si další krok</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/plemena/"><span class="hp-tile-icon hp-icon-lilac">⌕</span><strong>Katalog plemen</strong><small>Hledej informace o plemenech</small><b class="hp-tile-arrow">↗</b></a>
-   </div>
-  </div>
-  <div class="hp-hub-group"><div class="hp-group-title"><span class="hp-group-number">02</span><div><h3>Moje psí akademie</h3><p>Osobní prostor po přihlášení</p></div><a href="/akademie/" class="hp-group-link">Otevřít akademii ↗</a></div>
-   <div class="hp-tile-grid hp-academy-tiles">
-    <a class="hp-tile hp-tile-feature" href="/akademie/"><span class="hp-tile-feature-photo"><img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=1000&q=85" alt="Člověk tráví čas se psem" loading="lazy"></span><span class="hp-tile-feature-overlay"></span><span class="hp-feature-tile-copy"><span class="hp-tile-icon">✳</span><strong>Psí akademie</strong><small>Tvůj osobní prostor pro společný růst</small><b>Vstoupit do akademie ↗</b></span></a>
-    <a class="hp-tile" href="/profil/"><span class="hp-tile-icon hp-icon-sage">♡</span><strong>Moji psi a jejich profily</strong><small>Profily, informace a cíle vašich psů</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/lekce/"><span class="hp-tile-icon hp-icon-cream">✳</span><strong>Výcvikové lekce</strong><small>Praktické kroky pro běžný den</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/mise/"><span class="hp-tile-icon hp-icon-peach">⚑</span><strong>Mise a výzvy</strong><small>Malé cíle, které vás posunou</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/dog-puller/"><span class="hp-tile-icon hp-icon-lilac">◉</span><strong>Dog Puller</strong><small>Hra, pohyb a společná aktivita</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/postup/"><span class="hp-tile-icon hp-icon-sage">↗</span><strong>Pokrok a historie tréninků</strong><small>Vrať se k tomu, co už umíte</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/souteze/"><span class="hp-tile-icon hp-icon-cream">✦</span><strong>Soutěže a certifikáty</strong><small>Výsledky a dosažené milníky</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/komunita/"><span class="hp-tile-icon hp-icon-peach">♧</span><strong>Komunita pejskařů</strong><small>Sdílej zkušenosti a inspiraci</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile" href="/ucet/"><span class="hp-tile-icon hp-icon-lilac">◎</span><strong>Můj účet a profil</strong><small>Přihlášení, registrace a nastavení</small><b class="hp-tile-arrow">↗</b></a>
-    <a class="hp-tile hp-admin-tile hidden" id="admin-hub-link" href="/administrace/"><span class="hp-tile-icon hp-icon-dark">⚙</span><strong>Administrace</strong><small>Správa obsahu — pouze správce</small><b class="hp-tile-arrow">↗</b></a>
-   </div>
-  </div>
-  <div class="hp-bottom-banner"><span class="hp-banner-icon">♡</span><div><strong>Každý pes má své tempo.</strong><p>Vyber si jednu věc, kterou dnes chcete zkusit společně.</p></div><a class="btn" href="/ucet/">Můj prostor <span aria-hidden="true">↗</span></a></div>
- </div>
-</section>
-<section class="hp-final-strip"><div class="wrap"><div><span class="hp-eyebrow"><span></span> PŘIPRAVENI NA DALŠÍ KROK?</div><h2>Malé pokroky. Velké společné chvíle.</h2></div><a class="btn" href="/ucet/">Přihlásit se nebo vytvořit účet ↗</a></div></section>`}
 else if(p.kind==='auth'){body=`<section class="hp-auth-page"><div class="wrap hp-auth-layout"><div class="hp-auth-story"><div class="hp-eyebrow"><span></span> HODNÝ PES · OSOBNÍ AKADEMIE</div><h1>Váš společný příběh si <em>zaslouží růst.</em></h1><p>Přihlas se do svého prostoru, kde můžeš navazovat na trénink, sledovat pokroky a mít důležité psí aktivity na jednom místě.</p><div class="hp-auth-photo"><img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=1100&q=85" alt="Pes venku se svým člověkem"><div class="hp-auth-photo-note"><span>✳</span><div><strong>Každý malý krok se počítá.</strong><small>Víc porozumění. Víc společných chvil.</small></div></div></div><a class="hp-auth-back" href="/">← Zpět na úvodní stránku</a></div><div class="hp-auth-form-wrap"><div class="hp-auth-form-head"><span class="hp-auth-mark">HP</span><span class="hp-pill">Váš osobní prostor</span></div>`+authBody()+`<p class="hp-auth-privacy"><span>♧</span> Přihlášení do vašeho osobního účtu</p></div></div></section>`}
 else if(p.kind==='public'){body='<section class="page-head wrap"><div class="eyebrow">'+p.kicker+'</div><h1>'+p.heading+'</h1><p>'+p.lead+'</p><div class="actions"><a class="btn light" href="https://hodnypes.cz/" target="_blank" rel="noopener noreferrer">Oficiální web Hodného psa ↗</a></div></section><section class="content wrap">'+cards(p.cards||[])+'<div id="published-content" class="stack" style="margin-top:20px"></div></section>'}
 else if(p.kind==='contact'){body='<section class="page-head wrap"><div class="eyebrow">'+p.kicker+'</div><h1>'+p.heading+'</h1><p>'+p.lead+'</p></section><section class="content wrap"><div class="grid"><article class="card"><h3>Tréninkové centrum Hodný pes</h3><p>Týmlova 8<br>Praha 4, 140 00</p><p><a href="https://maps.google.com/?q=T%C3%BDmlova+8+Praha+4" target="_blank" rel="noopener noreferrer">Otevřít mapu ↗</a></p></article><article class="card"><h3>Kontakt</h3><p>E-mail: <a href="mailto:info@hodnypes.cz">info@hodnypes.cz</a></p><p>Výcvik: <a href="tel:+420606509488">+420 606 509 488</a></p><p>E-shop: <a href="tel:+420731589970">+420 731 589 970</a></p></article><article class="card"><h3>Otevírací doba centra</h3><p>Pondělí–pátek: 11:00–20:00</p><p class="muted">Údaje podle oficiální kontaktní stránky; před cestou ověř aktuální stav.</p><p><a class="btn light" href="https://www.hodnypes.cz/kontakt-new/" target="_blank" rel="noopener noreferrer">Oficiální kontakt ↗</a></p></article></div></section>'}
