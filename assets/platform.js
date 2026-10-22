@@ -114,7 +114,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   async function loadTab(){
     const panel=$('#hp-panel');if(!panel)return;msg('');
     if(!state.session){panel.innerHTML=noSession();bindLogin();return}
-    panel.innerHTML=({community:tabCommunity,missions:tabMissions,diary:tabDiary,events:tabEvents,academy:tabAcademy,articles:tabArticles,groups:tabGroups,notifications:tabNotifications,settings:tabSettings}[state.tab]||tabCommunity)();
+    panel.innerHTML=({community:tabCommunity,messages:tabMessages,missions:tabMissions,diary:tabDiary,events:tabEvents,academy:tabAcademy,breeds:tabBreeds,articles:tabArticles,groups:tabGroups,notifications:tabNotifications,settings:tabSettings,admin:tabAdmin}[state.tab]||tabCommunity)();
     try{
       if(state.tab==='community'){ $('#hp-post-form').addEventListener('submit',savePost);await loadPosts()}
       if(state.tab==='messages')await loadMessages();
