@@ -52,6 +52,43 @@ function render(path,p){const isHome=path==='/';let body='';if(p.kind==='home'){
 <section class="hp-home-hero" id="top">
  <div class="wrap hp-hero-grid">
   <div class="hp-hero-copy">
+   <div class="hp-eyebrow"><span></span> HODNÝ PES · MÍSTO PRO VÁS A VAŠEHO PSA</div>
+   <h1>Váš společný příběh si <em>zaslouží růst.</em></h1>
+   <p>Praktické informace, novinky a osobní psí akademie na jednom místě. Objev, co můžeš se svým psem zažít, a pokračuj svým tempem.</p>
+   <div class="hp-hero-actions"><a class="btn" href="/ucet/">Přihlásit se <span aria-hidden="true">↗</span></a><a class="btn light" href="/o-nas/">Poznat Hodného psa</a></div>
+   <div class="hp-trust-line"><span>✳</span> Veřejné informace i osobní prostor po přihlášení</div>
+  </div>
+  <a class="hp-feature-story" href="/vycvik/" aria-label="Prozkoumat výcvik a aktivity">
+   <img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=1200&q=88" alt="Pes při společném pobytu venku" fetchpriority="high">
+   <span class="hp-image-shade"></span>
+   <span class="hp-story-tag">HODNÝ PES · AKADEMIE</span>
+   <span class="hp-story-copy"><small>Víc porozumění. Víc společných chvil.</small><strong>Malé kroky, které<br>posilují váš vztah.</strong><span class="hp-story-link">Objevte aktivity <b>↗</b></span></span>
+   <span class="hp-story-index">01 <i>/ 03</i></span>
+  </a>
+ </div>
+</section>
+<section class="hp-news-section" id="novinky">
+ <div class="wrap">
+  <div class="hp-section-head"><div><div class="hp-eyebrow"><span></span> CO JE NOVÉHO</div><h2>Novinky a aktuality</h2><p>Aktuální informace a zveřejněné akce. Nové položky se zobrazí po publikování správcem.</p></div><a class="hp-text-link" href="/akce/">Všechny akce <span>↗</span></a></div>
+  <div id="public-events" class="hp-news-grid" aria-live="polite"><article class="hp-news-loading"><span class="hp-loader"></span><p>Načítáme zveřejněné novinky…</p></article></div>
+  <div class="hp-news-foot"><span class="hp-live-dot"></span> Zobrazeny jsou pouze zveřejněné položky <span class="hp-foot-sep">·</span> <a href="https://hodnypes.cz/" target="_blank" rel="noopener noreferrer">Oficiální web Hodného psa ↗</a></div>
+ </div>
+</section>
+<section class="hp-hub-section" id="rozcestnik">
+ <div class="wrap">
+  <div class="hp-section-head"><div><div class="hp-eyebrow"><span></span> TVŮJ DALŠÍ KROK</div><h2>Pokračuj podle sebe</h2><p>Přihlas se do osobní akademie, nebo si nejdřív prohlédni veřejné informace.</p></div><span class="hp-hub-pill">Vše na jednom místě <b>✳</b></span></div>
+  <div class="hp-hub-grid">
+   <a class="hp-hub-card" href="/ucet/"><span class="hp-hub-icon">↗</span><span class="hp-hub-card-copy"><strong>Přihlášení a registrace</strong><small>Vstup do osobního účtu a své akademie.</small></span><span class="hp-hub-arrow">↗</span></a>
+   <a class="hp-hub-card" href="/o-nas/"><span class="hp-hub-icon">✳</span><span class="hp-hub-card-copy"><strong>O Hodném psovi</strong><small>Seznam se s přístupem a posláním centra.</small></span><span class="hp-hub-arrow">↗</span></a>
+   <a class="hp-hub-card" href="/vycvik/"><span class="hp-hub-icon">♡</span><span class="hp-hub-card-copy"><strong>Výcvik a aktivity</strong><small>Prozkoumej možnosti společného tréninku.</small></span><span class="hp-hub-arrow">↗</span></a>
+   <a class="hp-hub-card" href="/akce/"><span class="hp-hub-icon">⌁</span><span class="hp-hub-card-copy"><strong>Akce a novinky</strong><small>Aktuality a zveřejněné události.</small></span><span class="hp-hub-arrow">↗</span></a>
+  </div>
+ </div>
+</section>
+`}
+<section class="hp-home-hero" id="top">
+ <div class="wrap hp-hero-grid">
+  <div class="hp-hero-copy">
    <div class="hp-eyebrow"><span></span> HODNÝ PES · NOVINKY A SPOLEČNÝ ŽIVOT</div>
    <h1>Všechno důležité pro <em>život se psem.</em></h1>
    <p>Novinky, akce a osobní akademie na jednom místě. Objev, co se děje, a pokračuj přesně tam, kde to pro vás dva dává smysl.</p>
