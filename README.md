@@ -43,7 +43,9 @@ Po přidělení role se v /administrace/ zobrazí správa obsahu, akcí, rolí a
 - `public.academy_content` uchovává spravované lekce, mise, kvízy, kurzy a soutěže. Publikovaný obsah se načítá v příslušných částech akademie.
 - `public.academy_completions`, `public.dog_puller_sessions`, `public.quiz_attempts`, `public.academy_reminders` a `public.academy_certificates` uchovávají historii, záznamy Dog Puller, kvízy, připomínky a potvrzení dokončení.
 - Administrace obsahuje správu veřejného obsahu, událostí, uživatelských rolí, katalogu plemen, dalších katalogů, obsahu akademie a souhrnu postupu.
-- Připomínky se ukládají do databáze, ale **zatím neposílají push oznámení ani e-maily**. Fotografie psa se v současnosti ukládá jako URL; nahrávání souborů do Supabase Storage není nakonfigurované.
+- Připomínky se ukládají do databáze, ale **zatím neposílají push oznámení ani e-maily**. Fotografie psů lze nahrávat do soukromého bucketu `dog-media` v Supabase Storage; soubory jsou omezené na JPG/PNG/WebP do 15 MB a RLS politiky povolují přístup pouze vlastníkovi. Starší veřejné URL fotografií zůstávají podporované.
+- Web záměrně neobsahuje mapu, geolokaci ani sdílení polohy. Adresa výcvikového centra může být uvedena jako prostý text bez mapového odkazu.
+- `npm run build` a `npm test` spouštějí kontrolu syntaxe, požadovaných souborů, hlavních rout, mapových odkazů, konfigurace soukromého úložiště a systémového barevného režimu.
 - Certifikáty jsou interní potvrzení aplikace, ne oficiální kvalifikace ani potvrzení od trenéra. Zdravotní a behaviorální informace v katalogu nenahrazují veterinární péči ani individuální doporučení kvalifikovaného odborníka.
 
 ## Nasazení
