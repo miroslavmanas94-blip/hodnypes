@@ -6,9 +6,11 @@ const requiredFiles = [
   'functions/api/session.js',
   'functions/api/logout.js',
   'assets/site.js',
+  'assets/platform.js',
   'assets/site.css',
   'manifest.webmanifest',
   'supabase/migrations/20261022180000_add_private_dog_media_storage.sql',
+  'supabase/migrations/20261022190000_platform_core.sql',
 ];
 const missing = requiredFiles.filter((file) => !existsSync(file));
 if (missing.length) {
@@ -20,6 +22,7 @@ const middleware = readFileSync('functions/_middleware.js', 'utf8')
   .replace('export async function onRequest', 'async function onRequest');
 const browser = readFileSync('assets/site.js', 'utf8')
   .split('\n').slice(1).join('\n');
+const platform = readFileSync('assets/platform.js', 'utf8').replace(/^import .*?;\\s*/s, '');
 const session = readFileSync('functions/api/session.js', 'utf8')
   .replace('export async function onRequestPost', 'async function onRequestPost');
 const logout = readFileSync('functions/api/logout.js', 'utf8')
@@ -28,6 +31,7 @@ const logout = readFileSync('functions/api/logout.js', 'utf8')
 for (const [name, source] of [
   ['Cloudflare Pages middleware', middleware],
   ['Browser JavaScript', browser],
+  ['Member platform JavaScript', platform],
   ['Session endpoint', session],
   ['Logout endpoint', logout],
 ]) {
@@ -88,3 +92,23 @@ if (!siteSource.includes('const systemTheme') || !siteSource.includes("prefers-c
 if (process.exitCode) process.exit(process.exitCode);
 console.log('✓ Privacy, private media storage, and system theme checks passed');
 
+
+
+const platformSource = readFileSync('assets/platform.js', 'utf8');
+const coreMigration = readFileSync('supabase/migrations/20261022190000_platform_core.sql', 'utf8');
+if (platformSource.includes('navigator.geolocation') || platformSource.includes('getCurrentPosition') || platformSource.includes('watchPosition')) {
+  console.error('✗ Privacy: location access is forbidden.');
+  process.exitCode = 1;
+}
+for (const table of ['hp_posts','hp_comments','hp_reactions','hp_follows','hp_groups','hp_events','hp_missions','hp_training_entries','hp_courses','hp_articles','hp_notifications','hp_user_preferences','hp_reports']) {
+  if (!coreMigration.includes('public.' + table)) {
+    console.error('✗ Platform migration missing table:', table);
+    process.exitCode = 1;
+  }
+}
+if (!readFileSync('index.html', 'utf8').includes('/assets/platform.js')) {
+  console.error('✗ Platform UI is not connected to the homepage.');
+  process.exitCode = 1;
+}
+if (process.exitCode) process.exit(process.exitCode);
+console.log('✓ Platform modules, migration coverage, and no-location checks passed');
