@@ -111,7 +111,11 @@ for (const table of ['hp_posts','hp_comments','hp_reactions','hp_follows','hp_gr
     process.exitCode = 1;
   }
 }
-if (!messageMigration.includes('sender_id=auth.uid() or recipient_id=auth.uid()') || !messageMigration.includes('sender_id=auth.uid()')) {\n  console.error('✗ Messaging: participant-only RLS is required.');\n  process.exitCode = 1;\n}\nif (!readFileSync('index.html', 'utf8').includes('/assets/platform.js')) {
+if (!messageMigration.includes('sender_id=auth.uid() or recipient_id=auth.uid()') || !messageMigration.includes('sender_id=auth.uid()')) {
+  console.error('✗ Messaging: participant-only RLS is required.');
+  process.exitCode = 1;
+}
+if (!readFileSync('index.html', 'utf8').includes('/assets/platform.js')) {
   console.error('✗ Platform UI is not connected to the homepage.');
   process.exitCode = 1;
 }
