@@ -69,7 +69,7 @@ console.log('✓ Required route smoke checks passed');
 const middlewareSource = readFileSync('functions/_middleware.js', 'utf8');
 const siteSource = readFileSync('assets/site.js', 'utf8');
 const storageMigration = readFileSync('supabase/migrations/20261022180000_add_private_dog_media_storage.sql', 'utf8');
-if (/maps\\.google\\.com|google\\.com\\/maps/i.test(middlewareSource)) {
+if (middlewareSource.includes('maps.google.com') || middlewareSource.includes('google.com/maps')) {
   console.error('✗ Privacy: map links must not be present on Hodný pes.');
   process.exitCode = 1;
 }
