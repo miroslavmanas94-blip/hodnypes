@@ -133,7 +133,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
     if(state.session)await getDogs();
     await loadTab();
     db.auth.onAuthStateChange(async(_event,session)=>{state.session=session;state.isAdmin=false;if(session){await getDogs();const {data:role}=await db.from('user_roles').select('role').eq('user_id',session.user.id).maybeSingle();state.isAdmin=role?.role==='admin'}renderShell();await loadTab()});
-    if($('#hp-posts')){state.channel=db.channel('hp-live-feed').on('postgres_changes',{event:'*',schema:'public',table:'hp_posts'},()=>{if(state.tab==='community')loadPosts()}).subscribe()}
+    state.channel=db.channel('hp-live-platform').on('postgres_changes',{event:'*',schema:'public',table:'hp_posts'},()=>{if(state.tab==='community')loadPosts()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_comments'},()=>{if(state.tab==='community')loadPosts()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_messages'},()=>{if(state.tab==='messages')loadMessages()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_notifications'},()=>{if(state.tab==='notifications')loadNotifications()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_events'},()=>{if(state.tab==='events')loadEvents()}).subscribe()
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
