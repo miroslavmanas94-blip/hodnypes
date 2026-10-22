@@ -31,7 +31,7 @@ jobs:
       - name: Check for accidentally committed secrets
         shell: bash
         run: |
-          if grep -RInE --exclude-dir=.git --exclude='*.md' --exclude='*.map' '(service_role|SUPABASE_SERVICE_ROLE_KEY|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----)' .; then
+          if grep -RInE --exclude-dir=.git --exclude='*.md' --exclude='*.map' --exclude='quality.yml' '(service_role|SUPABASE_SERVICE_ROLE_KEY|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----)' .; then
             echo "::error::Potential secret or private key found in repository."
             exit 1
           fi
