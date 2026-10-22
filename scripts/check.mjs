@@ -14,6 +14,7 @@ const requiredFiles = [
   'supabase/migrations/20261022203000_realtime_events_reactions.sql',
   'supabase/migrations/20261022204000_event_capacity_waitlist.sql',
   'supabase/migrations/20261022205000_lock_waitlist_function_execution.sql',
+  'supabase/migrations/20261022210000_event_roles_and_permissions.sql',
   'supabase/migrations/20261022202000_direct_messages.sql',
   'supabase/migrations/20261022201000_admin_review_access.sql',
   'supabase/migrations/20261022200000_admin_publishing_policies.sql',
