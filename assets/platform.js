@@ -53,7 +53,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
     $('#hp-tabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{state.tab=b.dataset.tab;renderShell();loadTab()}));
   }
   function noSession(){return '<div class="hp-card"><h3>'+esc(t('login'))+'</h3><p class="hp-muted">Přihlášení a vytvoření účtu najdeš v tlačítku v horní navigaci.</p><button class="hp-btn" id="hp-login" type="button">Přihlásit se / vytvořit účet</button></div>'}
-  function bindLogin(){ $('#hp-login')?.addEventListener('click',()=>$('#auth-dialog')?.showModal?.()); }
+  function bindLogin(){ $('#hp-login')?.addEventListener('click',()=>{const next=location.pathname+location.search;location.href='/ucet/?next='+encodeURIComponent(next.startsWith('/')&&!next.startsWith('//')?next:'/akademie/')}); }
   function empty(){return '<div class="hp-empty">'+esc(t('empty'))+'</div>'}
   async function getDogs(){if(!state.session)return;const {data,error}=await db.from('dog_profiles').select('id,name,breed_name').eq('user_id',state.session.user.id).order('created_at');if(!error)state.dogs=data||[]}
   function dogSelect(){return '<label>Pes (volitelné)<select name="dog_id"><option value="">Bez přiřazení</option>'+state.dogs.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.name)+' · '+esc(d.breed_name||'')+'</option>').join('')+'</select></label>'}
@@ -142,10 +142,12 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
     }catch(e){msg(e.message||'Nepodařilo se načíst obsah.','error')}
   }
   async function init(){
-    shell();renderShell();
+    const initialTab={academy:'academy',profile:'profile',missions:'missions',lessons:'academy',community:'community',messages:'messages',breeds:'breeds',admin:'admin'};
+    state.tab=initialTab[document.body.dataset.page]||'community';
+    shell();
     const {data}=await db.auth.getSession();state.session=data.session;
-    if(state.session)await getDogs();
-    await loadTab();
+    if(state.session){await getDogs();const {data:role}=await db.from('user_roles').select('role').eq('user_id',state.session.user.id).maybeSingle();state.isAdmin=role?.role==='admin'}
+    renderShell();await loadTab();
     db.auth.onAuthStateChange(async(_event,session)=>{state.session=session;state.isAdmin=false;if(session){await getDogs();const {data:role}=await db.from('user_roles').select('role').eq('user_id',session.user.id).maybeSingle();state.isAdmin=role?.role==='admin'}renderShell();await loadTab()});
     state.channel=db.channel('hp-live-platform').on('postgres_changes',{event:'*',schema:'public',table:'hp_posts'},()=>{if(state.tab==='community')loadPosts()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_comments'},()=>{if(state.tab==='community')loadPosts()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_messages'},()=>{if(state.tab==='messages')loadMessages()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_notifications'},()=>{if(state.tab==='notifications')loadNotifications()}).on('postgres_changes',{event:'*',schema:'public',table:'hp_events'},()=>{if(state.tab==='events')loadEvents()}).subscribe()
   }
