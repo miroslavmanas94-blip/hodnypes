@@ -6,7 +6,7 @@ const read=f=>readFileSync(f,'utf8');
 const middleware=read('functions/_middleware.js').replace('export async function onRequest','async function onRequest');
 const browser=read('assets/site.js').split('\n').slice(1).join('\n');
 const platform=read('assets/platform.js').replace(/^import .*?;\s*/s,'');
-for(const [name,src] of [['middleware',middleware],['browser JavaScript',browser],['platform JavaScript',platform]]){try{new vm.Script(src,{filename:name});console.log('✓ Syntax:',name)}catch(e){console.error('✗ Syntax:',name,e.message);process.exitCode=1}}
+for(const [name,src] of [['middleware',middleware],['browser JavaScript',browser],['platform JavaScript',platform]]){try{new vm.Script(name==='browser JavaScript'?'(async()=>{\\n'+src+'\\n})()':src,{filename:name});console.log('✓ Syntax:',name)}catch(e){console.error('✗ Syntax:',name,e.message);process.exitCode=1}}
 const manifest=JSON.parse(read('manifest.webmanifest'));if(manifest.lang!=='cs'||!manifest.start_url||!manifest.icons?.length){console.error('Invalid web app manifest');process.exitCode=1}
 const mw=read('functions/_middleware.js'),site=read('assets/site.js'),html=read('index.html'),core=read('supabase/migrations/20261022190000_platform_core.sql'),storage=read('supabase/migrations/20261022180000_add_private_dog_media_storage.sql');
 for(const route of ['/','/ucet/','/o-nas/','/vycvik/','/akce/','/kontakt/','/akademie/','/profil/','/mise/','/lekce/','/komunita/','/zpravy/','/plemena/','/administrace/','/rezervace/','/pravidla/','/soukromi/'])if(!mw.includes("'"+route+"':{")){console.error('Missing route:',route);process.exitCode=1}
