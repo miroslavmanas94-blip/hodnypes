@@ -12,6 +12,7 @@ const requiredFiles = [
   'supabase/migrations/20261022180000_add_private_dog_media_storage.sql',
   'supabase/migrations/20261022190000_platform_core.sql',
   'supabase/migrations/20261022203000_realtime_events_reactions.sql',
+  'supabase/migrations/20261022204000_event_capacity_waitlist.sql',
   'supabase/migrations/20261022202000_direct_messages.sql',
   'supabase/migrations/20261022201000_admin_review_access.sql',
   'supabase/migrations/20261022200000_admin_publishing_policies.sql',
@@ -101,6 +102,7 @@ console.log('✓ Privacy, private media storage, and system theme checks passed'
 const platformSource = readFileSync('assets/platform.js', 'utf8');
 const coreMigration = readFileSync('supabase/migrations/20261022190000_platform_core.sql', 'utf8');
 const messageMigration = readFileSync('supabase/migrations/20261022202000_direct_messages.sql', 'utf8');
+const waitlistMigration = readFileSync('supabase/migrations/20261022204000_event_capacity_waitlist.sql', 'utf8');
 if (platformSource.includes('navigator.geolocation') || platformSource.includes('getCurrentPosition') || platformSource.includes('watchPosition')) {
   console.error('✗ Privacy: location access is forbidden.');
   process.exitCode = 1;
@@ -110,6 +112,10 @@ for (const table of ['hp_posts','hp_comments','hp_reactions','hp_follows','hp_gr
     console.error('✗ Platform migration missing table:', table);
     process.exitCode = 1;
   }
+}
+if (!waitlistMigration.includes('hp_assign_event_waitlist') || !waitlistMigration.includes('hp_promote_event_waitlist')) {
+  console.error('✗ Events: capacity and waitlist triggers are required.');
+  process.exitCode = 1;
 }
 if (!messageMigration.includes('sender_id=auth.uid() or recipient_id=auth.uid()') || !messageMigration.includes('sender_id=auth.uid()')) {
   console.error('✗ Messaging: participant-only RLS is required.');
