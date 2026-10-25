@@ -134,7 +134,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
     if(!state.session){panel.innerHTML=noSession();bindLogin();return}
     panel.innerHTML=({dashboard:tabDashboard,community:tabCommunity,questions:tabQuestions,messages:tabMessages,profile:tabProfile,missions:tabMissions,diary:tabDiary,events:tabEvents,academy:tabAcademy,breeds:tabBreeds,articles:tabArticles,groups:tabGroups,notifications:tabNotifications,settings:tabSettings,admin:tabAdmin}[state.tab]||tabDashboard)();
     try{
-      if(state.tab==='dashboard'){panel.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{state.tab=b.dataset.go;renderShell();loadTab()}));}\n      if(state.tab==='community'||state.tab==='questions'){state.feedFilter=state.tab==='questions'?'questions':'posts';$('#hp-post-form').addEventListener('submit',savePost);await loadPosts()}
+      if(state.tab==='dashboard'){panel.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{state.tab=b.dataset.go;renderShell();loadTab()}));}
+      if(state.tab==='community'||state.tab==='questions'){state.feedFilter=state.tab==='questions'?'questions':'posts';$('#hp-post-form').addEventListener('submit',savePost);await loadPosts()}
       if(state.tab==='messages')await loadMessages();
       if(state.tab==='profile')await loadProfile();
       if(state.tab==='missions')await loadMissions();
