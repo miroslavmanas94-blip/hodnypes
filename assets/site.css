@@ -47,3 +47,24 @@ button:disabled{opacity:.65;cursor:wait}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(max-width:980px){.hero{padding-top:48px;padding-bottom:60px}.auth-art{min-height:480px}.section{padding-top:72px;padding-bottom:72px}}
 @media(max-width:650px){.hero{padding-top:35px;padding-bottom:42px}.hero-visual{min-height:390px}.section{padding-top:56px;padding-bottom:56px}.page-hero{padding-top:48px;padding-bottom:24px}.page-content{padding-bottom:65px}.auth-layout{grid-template-columns:1fr;padding-top:30px;gap:22px}.auth-art{min-height:280px;max-height:320px;border-radius:26px}.auth-art-copy{left:22px;right:22px;bottom:22px}.auth-art-copy h2{font-size:27px}.auth-card{padding:22px}.footer-main{flex-direction:column}.footer-bottom{flex-direction:column;gap:7px}.panel{padding:20px}}
+
+
+/* Polished, consistent experience across the public site and member pages. */
+:root{--shadow:0 24px 70px rgba(29,48,38,.08);--radius:24px}
+::selection{background:#d9ef9d;color:#1d3026}
+body{min-height:100vh;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+.top{background:rgba(245,243,234,.92);border-bottom-color:rgba(35,75,53,.12)}
+.brand-mark{box-shadow:0 7px 18px rgba(35,75,53,.14)}
+.links a{transition:background .18s ease,color .18s ease,transform .18s ease}
+.links a:hover{transform:translateY(-1px)}
+.btn{box-shadow:0 7px 18px rgba(35,75,53,.10);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn:hover{box-shadow:0 12px 24px rgba(35,75,53,.16)}
+.panel,.feature-card,.news-card{box-shadow:0 12px 34px rgba(29,48,38,.035);transition:border-color .2s ease,box-shadow .2s ease}
+.feature-card:hover,.news-card:hover{border-color:#cbd7c2;box-shadow:0 18px 44px rgba(29,48,38,.08)}
+.field input,.field textarea,.field select{transition:border-color .15s ease,box-shadow .15s ease}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#6c936d;box-shadow:0 0 0 4px rgba(108,147,109,.14);outline:none}
+.auth-card{padding:clamp(22px,3vw,38px);box-shadow:0 25px 75px rgba(29,48,38,.09)}
+.auth-art{box-shadow:0 22px 60px rgba(29,48,38,.10)}
+.notice{line-height:1.55}
+@media(max-width:760px){.wrap{width:min(100% - 32px,1240px)}.auth-layout{gap:24px;padding:30px 0 55px}.auth-art{min-height:260px}.auth-card{padding:22px}.page-hero{padding-top:48px}.section{padding:58px 0}.quote-band{padding:28px;grid-template-columns:1fr}.quote-band .btn{justify-self:start}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

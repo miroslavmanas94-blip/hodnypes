@@ -1,6 +1,6 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
 const URL='https://krgtpruozlhygziwlwbt.supabase.co',KEY='sb_publishable_IUbDhP7T_2m7XiAKcSg0Ng_v2F4A97e';
-const db=createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+const db=createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false,flowType:'pkce'}});
 const $=s=>document.querySelector(s);
 const menu=$('#menu-toggle'),links=$('#site-links');
 menu?.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Zavřít ×':'Menu ☰'});
@@ -16,24 +16,43 @@ if(authTabs.length){
  $('#google-login')?.addEventListener('click',async()=>{const {error}=await db.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/ucet/?next=%2Fakademie%2F'}});if(error){message.className='notice error';message.textContent=error.message}});
 }
 function safeNext(){const n=new URLSearchParams(location.search).get('next')||'/akademie/';return n.startsWith('/')&&!n.startsWith('//')?n:'/akademie/'}
-async function syncServerSession(session){const response=await fetch('/api/session',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({access_token:session.access_token,expires_in:session.expires_in||3600})});if(!response.ok)throw new Error('Relaci se nepodařilo bezpečně propojit se serverem ('+response.status+'). Zkus se přihlásit znovu.');return response.json()}
-async function clearServerSession(){try{await fetch('/api/logout',{method:'POST',credentials:'same-origin'})}catch{}}
+async function syncServerSession(session){const response=await fetch('/api/session',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',cache:'no-store',body:JSON.stringify({access_token:session.access_token})});if(!response.ok)throw new Error('Relaci se nepodařilo bezpečně propojit se serverem ('+response.status+'). Přihlášení nebylo dokončeno; zkus to prosím znovu.');return response.json()}
+async function clearServerSession(){try{await fetch('/api/logout',{method:'POST',credentials:'same-origin',cache:'no-store'})}catch{}}
 let authRedirectPending=false;
+let authCallbackHandled=false;
+// PKCE callback is exchanged explicitly before navigation. This prevents the server
+// middleware from redirecting to login while Supabase is still processing ?code=.
+if(path==='/ucet/'&&new URLSearchParams(location.search).has('code')){
+ const message=$('#auth-message'),submit=$('#auth-submit');
+ if(message){message.className='notice';message.textContent='Dokončujeme bezpečné přihlášení přes Google…'}
+ if(submit)submit.disabled=true;
+ try{
+  const code=new URLSearchParams(location.search).get('code');
+  const {data,error}=await db.auth.exchangeCodeForSession(code);
+  if(error)throw error;
+  if(!data.session)throw new Error('Google nepotvrdil aktivní relaci.');
+  await syncServerSession(data.session);
+  authCallbackHandled=true;
+  authRedirectPending=true;
+  history.replaceState({},document.title,location.pathname+location.search.replace(/([?&])code=[^&]*&?/,'$1').replace(/[?&]$/,''));
+  location.replace(safeNext());
+ }catch(err){
+  if(message){message.className='notice error';message.textContent='Google přihlášení se nepodařilo dokončit: '+(err.message||'zkus to znovu.')+' Pokud se to opakuje, ověř v Supabase URL pro přesměrování.'}
+  if(submit)submit.disabled=false;
+ }
+}
 db.auth.onAuthStateChange((event,session)=>{
- if(session){
-  queueMicrotask(async()=>{
-   try{
-    await syncServerSession(session);
-    if(path==='/ucet/'&&!authRedirectPending){
-     authRedirectPending=true;
-     location.replace(safeNext());
-    }
-   }catch(err){console.error('Session sync failed:',err)}
-  });
+ if(session&&(event==='SIGNED_IN'||event==='TOKEN_REFRESHED'||event==='USER_UPDATED'||event==='INITIAL_SESSION')){
+  queueMicrotask(async()=>{try{await syncServerSession(session)}catch(err){console.error('Session sync failed:',err)}});
  }else if(event==='SIGNED_OUT')queueMicrotask(clearServerSession);
 });
 const {data:initialAuth}=await db.auth.getSession();
-if(initialAuth.session){try{await syncServerSession(initialAuth.session);if(path==='/ucet/'){location.replace(safeNext())}}catch(err){console.error(err)}}
+if(initialAuth.session){
+ try{
+  await syncServerSession(initialAuth.session);
+  if(path==='/ucet/'&&!authCallbackHandled&&!authRedirectPending){authRedirectPending=true;location.replace(safeNext())}
+ }catch(err){const message=$('#auth-message');if(message){message.className='notice error';message.textContent=err.message||'Relaci se nepodařilo obnovit.'}else console.error(err)}
+}
 const ws=$('#workspace');
 if(ws){
  const page=ws.dataset.page;
