@@ -146,3 +146,10 @@ body.hp-theme-dark #hp-platform .hp-chat-tool{background:rgba(255,255,255,.07);c
 
 #hp-platform .hp-chat-back{display:none;border:1px solid rgba(218,226,216,.9);background:rgba(255,255,255,.74);color:#31583d;border-radius:13px;padding:6px 12px;font-size:24px;line-height:1;cursor:pointer}
 @media(max-width:760px){#hp-platform .hp-chat-back{display:inline-flex;align-items:center;justify-content:center}#hp-platform:not(.hp-chat-show-window) .hp-chat-window{display:none}#hp-platform.hp-chat-show-window .hp-chat-list{display:none}#hp-platform.hp-chat-show-window .hp-chat-window{display:flex;min-height:calc(100dvh - 220px)}#hp-platform.hp-chat-show-window .hp-chat-messages{max-height:calc(100dvh - 390px);min-height:180px}}
+
+
+/* Member routes use the app shell instead of the public-site chrome. */
+body.hp-app-body .top,body.hp-app-body .site-footer,body.hp-app-body .mobile-bottom,body.hp-app-body .page-hero{display:none!important}
+body.hp-app-body .page-content{padding:0!important}
+body.hp-app-body #hp-platform{width:min(100% - 36px,1440px);max-width:1440px;padding-top:22px}
+body.hp-app-body.hp-theme-dark{background:#101b14;color:#edf3ed}
