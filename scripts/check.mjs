@@ -16,6 +16,7 @@ for(const table of ['hp_posts','hp_comments','hp_reactions','hp_follows','hp_gro
 if(!site.includes('signInWithPassword')||!site.includes('signInWithOAuth')||!site.includes('resetPasswordForEmail')){console.error('Authentication flows missing');process.exitCode=1}
 if(!mw.includes('src="/assets/platform.js"')||!mw.includes('id="workspace"')||!mw.includes('data-page=')){console.error('Member platform needs its workspace mount point and page context');process.exitCode=1}
 if(!site.includes("async function syncServerSession(session)")||!site.includes("fetch('/api/session'")||!site.includes("fetch('/api/logout'")){console.error('Browser and server auth sessions are not synchronized');process.exitCode=1}
+if(!site.includes('let authRedirectPending=false')||!site.includes("location.replace(safeNext())")){console.error('OAuth callback must wait for server session sync and return to the requested page');process.exitCode=1}
 const sessionApi=read('functions/api/session.js'),logoutApi=read('functions/api/logout.js');
 if(!sessionApi.includes("set-cookie")||!sessionApi.includes("/auth/v1/user")||!logoutApi.includes("Max-Age=0")){console.error('Secure session cookie endpoints are incomplete');process.exitCode=1}
 const platformSource=read('assets/platform.js');
