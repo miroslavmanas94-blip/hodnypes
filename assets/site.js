@@ -18,7 +18,20 @@ if(authTabs.length){
 function safeNext(){const n=new URLSearchParams(location.search).get('next')||'/akademie/';return n.startsWith('/')&&!n.startsWith('//')?n:'/akademie/'}
 async function syncServerSession(session){const response=await fetch('/api/session',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({access_token:session.access_token,expires_in:session.expires_in||3600})});if(!response.ok)throw new Error('Relaci se nepodařilo bezpečně propojit se serverem ('+response.status+'). Zkus se přihlásit znovu.');return response.json()}
 async function clearServerSession(){try{await fetch('/api/logout',{method:'POST',credentials:'same-origin'})}catch{}}
-db.auth.onAuthStateChange((event,session)=>{if(session)queueMicrotask(()=>syncServerSession(session).catch(err=>console.error('Session sync failed:',err)));else if(event==='SIGNED_OUT')queueMicrotask(clearServerSession)});
+let authRedirectPending=false;
+db.auth.onAuthStateChange((event,session)=>{
+ if(session){
+  queueMicrotask(async()=>{
+   try{
+    await syncServerSession(session);
+    if(path==='/ucet/'&&!authRedirectPending){
+     authRedirectPending=true;
+     location.replace(safeNext());
+    }
+   }catch(err){console.error('Session sync failed:',err)}
+  });
+ }else if(event==='SIGNED_OUT')queueMicrotask(clearServerSession);
+});
 const {data:initialAuth}=await db.auth.getSession();
 if(initialAuth.session){try{await syncServerSession(initialAuth.session);if(path==='/ucet/'){location.replace(safeNext())}}catch(err){console.error(err)}}
 const ws=$('#workspace');
