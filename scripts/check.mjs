@@ -27,6 +27,6 @@ if(!html.includes('/assets/site.css')||!html.includes('/assets/site.js')){consol
 const chatMigration=read('supabase/migrations/20261025130000_chat_media_and_groups.sql');
 for(const required of ['hp_group_messages','enable row level security','hp_chat_media','hp_chat_typing_read','hp_chat_typing_send'])if(!chatMigration.toLowerCase().includes(required.toLowerCase())){console.error('Chat privacy requirement missing:',required);process.exitCode=1}
 if(!mw.includes("'/chat/'")||!mw.includes("'/nastaveni/'")||!mw.includes("'/chat/'")||!mw.includes("'/nastaveni/'")){console.error('Missing new protected routes');process.exitCode=1}
-if(!platformSource.includes('hp-chat-shell')||!platformSource.includes('createSignedUrl')||!platformSource.includes('event:'typing'')){console.error('Chat UI, private media or typing support missing');process.exitCode=1}
+if(!platformSource.includes('hp-chat-shell')||!platformSource.includes('createSignedUrl')||!platformSource.includes("event:'typing'")){console.error('Chat UI, private media or typing support missing');process.exitCode=1}
 
 if(process.exitCode)process.exit(process.exitCode);console.log('✓ Routes, authentication, privacy and database checks passed');
